@@ -1,0 +1,50 @@
+<mat-nav-list class="nav-list">
+  <div
+    class="nav-link"
+    [ngClass]="{ active: activeItem === 'notes' }"
+    (click)="chooseNav('notes')"
+  >
+    <mat-icon>lightbulb</mat-icon>
+    <span *ngIf="!collapsed">Notes</span>
+  </div>
+  <div
+    class="nav-link"
+    [ngClass]="{ active: activeItem === 'reminders' }"
+    (click)="chooseNav('reminders')"
+  >
+    <mat-icon>notifications</mat-icon>
+    <span *ngIf="!collapsed">Reminders</span>
+  </div>
+  <div
+    class="nav-link"
+    [ngClass]="{ active: activeItem === 'labels' }"
+    (click)="chooseNav('labels')"
+  >
+    <mat-icon>label</mat-icon>
+    <span *ngIf="!collapsed">Note</span>
+  </div>
+   <div
+    class="nav-link"
+    [ngClass]="{ active: activeItem === 'editlabels' }"
+    (click)="chooseNav('editlabels')"
+  >
+    <mat-icon>edit</mat-icon>
+    <span *ngIf="!collapsed">Edit labels</span>
+  </div>
+  <div
+    class="nav-link"
+    [ngClass]="{ active: activeItem === 'archive' }"
+    (click)="chooseNav('archive')"
+  >
+    <mat-icon>archive</mat-icon>
+    <span *ngIf="!collapsed">Archive</span>
+  </div>
+  <div
+    class="nav-link"
+    [ngClass]="{ active: activeItem === 'trash' }"
+    (click)="chooseNav('trash')"
+  >
+    <mat-icon>delete</mat-icon>
+    <span *ngIf="!collapsed">Trash</span>
+  </div>
+</mat-nav-list>
