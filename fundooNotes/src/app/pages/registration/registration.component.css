@@ -1,0 +1,152 @@
+.register-card {
+  width: 890px;
+  margin: 50px auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  border-radius: 8px;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.logo {
+  width: 80px;
+  margin-bottom: 8px;
+}
+
+.name-fields,
+.password-fields {
+  display: flex;
+  gap: 16px;
+}
+
+.form-field {
+  flex: 1;
+  margin-bottom: 20px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.email-link,
+.sign-in-link {
+  font-size: 13px;
+  color: #2a3f5a;
+  text-decoration: none;
+  cursor: pointer;
+  margin: 6px;
+}
+
+.signin-class {
+  display: flex;
+  align-items: flex-end;
+  align-content: space-evenly;
+  gap: 250px;
+}
+
+.checkbox {
+  margin-top: 8px;
+}
+
+.password-hint {
+  font-size: 12px;
+  color: #5f6368;
+}
+
+.submit-btn {
+  width: 20%;
+}
+.success-snackbar {
+  background-color: #4caf50;
+  color: white;
+}
+.error-snackbar {
+  background-color: #f44336; 
+  color: white;
+}
+
+/* Tablet (601px to 1024px) */
+@media screen and (max-width: 1024px) {
+  .register-card {
+    width: 90%;
+    padding: 16px;
+  }
+
+  .page-container {
+    gap: 20px;
+  }
+
+  .signin-class {
+    gap: 100px;
+  }
+
+  .submit-btn {
+    width: 30%;
+  }
+}
+
+/* Phone (up to 600px) */
+@media screen and (max-width: 600px) {
+  .register-card {
+    width: 100%;
+    margin: 20px auto;
+    padding: 12px;
+    flex-direction: column;
+  }
+
+  .page-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .right.container {
+    display: none;
+  }
+
+  .name-fields,
+  .password-fields {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .form-field {
+    margin-bottom: 12px;
+  }
+
+  .signin-class {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .submit-btn {
+    width: 100%;
+  }
+
+  .email-link,
+  .sign-in-link {
+    font-size: 14px;
+  }
+
+  .title {
+    align-items: center;
+    text-align: center;
+  }
+
+  .logo {
+    width: 60px;
+  }
+}

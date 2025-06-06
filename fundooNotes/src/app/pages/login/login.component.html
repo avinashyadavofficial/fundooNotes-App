@@ -1,0 +1,47 @@
+<div class="login-container">
+  <mat-card class="login-box">
+    <mat-card-header>
+      <div class="header-container">
+        <mat-card-title>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/640px-Google_2015_logo.svg.png" alt="Google Logo">
+          <p>Login</p>
+          <mat-card-subtitle>Use your Google Account</mat-card-subtitle>
+        </mat-card-title>
+      </div>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline" class="form-class">
+          <mat-label>Email or phone</mat-label>
+          <input matInput formControlName="emailOrPhone" placeholder="Email or phone*" required>
+          <mat-error *ngIf="loginForm.get('emailOrPhone')?.hasError('required')">
+            Email or phone is required
+          </mat-error>
+          <mat-error *ngIf="loginForm.get('emailOrPhone')?.hasError('pattern')">
+            Please enter a valid email or phone number
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="form-class">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password" placeholder="Password*" required>
+          <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+            Password is required
+          </mat-error>
+          <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')">
+            Password must be at least 8 characters
+          </mat-error>
+          <mat-error *ngIf="loginForm.get('password')?.hasError('pattern')">
+            Password must contain at least one letter, one number, and one special character
+          </mat-error>
+        </mat-form-field>
+        <div class="forgot-password">
+          <a routerLink="/forgot-password">Forgot password?</a>
+        </div>
+      </form>
+    </mat-card-content>
+    <mat-card-actions class="actions">
+      <a routerLink="/register" class="create-account">Create account</a>
+      <button mat-raised-button color="primary" [disabled]="!loginForm.valid" type="submit" (click)="onSubmit()">Login</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
