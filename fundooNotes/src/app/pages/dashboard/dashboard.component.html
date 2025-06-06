@@ -1,0 +1,20 @@
+<app-toolbar (menuClicked)="toggleSidenav()"></app-toolbar>
+
+<mat-sidenav-container class="main-layout">
+  <mat-sidenav
+    mode="side"
+    [opened]="true"
+    [class.collapsed-nav]="sidenavCollapsed"
+    class="custom-nav"
+    (mouseenter)="onMouseEnter()"
+    (mouseleave)="onMouseLeave()"
+  >
+    <app-sidenav [collapsed]="sidenavCollapsed"></app-sidenav>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div class="content-wrapper">
+      <p style="padding: 16px">Notes area</p>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
