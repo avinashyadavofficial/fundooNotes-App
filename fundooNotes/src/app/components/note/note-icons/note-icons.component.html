@@ -1,0 +1,31 @@
+<div class="icon-toolbar">
+  <mat-icon
+    class="material-symbols-outlined seltoggle"
+    *ngIf="showColor"
+    (click)="toggleColorPicker()"
+    title="Background color"
+  >palette</mat-icon>
+  <div *ngIf="showColorPicker" class="color-picker">
+    <div
+      *ngFor="let color of colors"
+      class="color-circle"
+      [style.background]="color"
+      (click)="selectColor(color)"
+    ></div>
+  </div>
+  <mat-icon class="material-symbols-outlined seltoggle" *ngIf="showReminder">notifications</mat-icon>
+  <mat-icon class="material-symbols-outlined seltoggle" *ngIf="showCollaborator">person_add</mat-icon>
+  <mat-icon class="material-symbols-outlined seltoggle" *ngIf="showImage">image</mat-icon>
+  <mat-icon class="material-symbols-outlined seltoggle" *ngIf="showArchive">archive</mat-icon>
+  <mat-icon class="material-symbols-outlined seltoggle" *ngIf="showTrash">delete</mat-icon>
+  <mat-icon class="material-symbols-outlined seltoggle" *ngIf="showMore">more_vert</mat-icon>
+   <mat-icon class="material-symbols-outlined seltoggle" *ngIf="showUndo">undo</mat-icon>
+    <mat-icon class="material-symbols-outlined seltoggle" *ngIf="showRedo">redo</mat-icon>
+    
+  
+</div>
+<div class="color-picker-wrapper" style="position: relative;">
+  
+
+  
+</div>
