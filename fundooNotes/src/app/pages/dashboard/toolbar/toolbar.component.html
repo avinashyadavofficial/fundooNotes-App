@@ -8,20 +8,25 @@
   <span class="title">Keep</span>
 
   <div class="search-container">
-    <mat-icon class="search-icon">search</mat-icon>
+    <mat-icon class="search-icon" >search</mat-icon>
     <input matInput placeholder="Search" [(ngModel)]="searchText" (ngModelChange)="search.emit(searchText)" class="search-input" />
   </div>
 
   
   <div class="icon-container">
-  <button mat-icon-button><mat-icon>refresh</mat-icon></button>
-  <button mat-icon-button (click)="toggleView()">
-  <mat-icon>{{ isGridView ? 'grid_view' : 'view_list' }}</mat-icon>
-  </button>
-  <button mat-icon-button><mat-icon>settings</mat-icon></button>
+  <button mat-icon-button><mat-icon class="material-symbols-outlined seltoggle">refresh</mat-icon></button>
+  <mat-icon
+  class="material-symbols-outlined seltoggle"
+  (click)="toggleViewMode()"
+  title="Toggle view"
+  >
+  {{ viewMode === 'grid' ? 'view_agenda' : 'grid_view' }}
+</mat-icon>
+
+  <button mat-icon-button><mat-icon class="material-symbols-outlined seltoggle">settings</mat-icon></button>
   </div>
   <div class="google-container">
-  <button mat-icon-button><mat-icon>apps</mat-icon></button>
+  <button mat-icon-button><mat-icon class="material-symbols-outlined seltoggle">apps</mat-icon></button>
   <mat-icon class="user-icon">account_circle</mat-icon>
   </div>
 </mat-toolbar>

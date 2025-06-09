@@ -18,13 +18,18 @@ import { Input,Output,EventEmitter } from '@angular/core';
 export class ToolbarComponent {
   @Output() menuClicked = new EventEmitter<void>();
   @Output() search = new EventEmitter<string>();
+  @Output() viewModeChange = new EventEmitter<'grid' | 'list'>();
+
+  viewMode: 'grid' | 'list' = 'grid';
+
+  toggleViewMode() {
+    this.viewMode = this.viewMode === 'grid' ? 'list' : 'grid';
+    this.viewModeChange.emit(this.viewMode); // send to parent (dashboard)
+  }
 
   searchText = '';
-  isGridView = true;
+  
 
-  toggleView() {
-    this.isGridView = !this.isGridView;
-  }
 
   onMenuClick() {
     this.menuClicked.emit();
