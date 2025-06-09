@@ -1,0 +1,82 @@
+.note-card {
+  width: 600px;
+  margin: 10px auto;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.2);
+  cursor: text;
+}
+
+.note-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.note-title {
+  width: 100%;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  outline: none;
+}
+
+.note-description {
+  width: 100%;
+  font-size: 14px;
+  margin: 12px 0;
+  border: none;
+  outline: none;
+}
+
+.note-collapsed {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 8px;
+  color: #5f6368;
+}
+
+
+.icon-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.icons-expand {
+  flex: 1;
+}
+.collapsed-note {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-radius: 8px;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.2);
+  width: 600px;
+  margin: 0 auto;
+  cursor: text;
+  background-color: #fff;
+   margin: 0 auto;
+}
+
+.collapsed-text {
+  color: #5f6368;
+  font-size: 15px;
+}
+
+.collapsed-icons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.material-symbols-outlined {
+  font-family: "Material Symbols Outlined";
+  font-size: 25px;
+  color: #5f6368;
+  cursor: pointer;
+}
+
