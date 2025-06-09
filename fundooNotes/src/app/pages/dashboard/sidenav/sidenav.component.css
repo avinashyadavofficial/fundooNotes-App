@@ -3,6 +3,7 @@
   width: 100%;
 }
 
+
 .nav-link {
   display: flex;
   align-items: center;
@@ -53,4 +54,10 @@
 
 :host-context(.collapsed-nav) .nav-link span {
   display: none;
+}
+.material-symbols-outlined {
+  font-family: "Material Symbols Outlined";
+  font-size: 20px;
+  color: #5f6368;
+  cursor: pointer;
 }
