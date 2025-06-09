@@ -1,0 +1,25 @@
+<div [ngClass]="viewMode === 'grid' ? 'note-grid' : 'note-list'">
+  <mat-card
+  *ngFor="let note of notes"
+  class="note-card"
+  [style.background]="note.color || '#fff'"
+  (mouseenter)="note.showIcons = true"
+  (mouseleave)="note.showIcons = false"
+  >
+  <h3>{{ note.title }}</h3>
+  <p>{{ note.description }}</p>
+  <app-note-icons
+  [showReminder]="true"
+  [showCollaborator]="true"
+  [showColor]="true"
+  [showImage]="true"
+  [showArchive]="true"
+  [showTrash]="false"
+  [showMore]="true"
+  [showRedo]="false"
+  [showUndo]="false"
+></app-note-icons>
+
+</mat-card>
+
+</div>

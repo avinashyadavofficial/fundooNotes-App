@@ -1,0 +1,28 @@
+.note-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.note-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.note-card {
+  background-color: var(--default-bg, white);
+  width: 240px;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.2);
+  
+}
+
+.note-list .note-card {
+  width: 45%; 
+}
