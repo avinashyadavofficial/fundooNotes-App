@@ -3,26 +3,36 @@ import { CommonModule } from '@angular/common';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { CreateNoteComponent } from '../../components/note/create-note/create-note.component';
+import { DisplayNoteComponent } from '../../components/note/display-note/display-note.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, ToolbarComponent, SidenavComponent, MatSidenavModule],
+  imports: [
+    CommonModule,
+    MatSidenavModule,
+    ToolbarComponent,
+    SidenavComponent,
+    CreateNoteComponent,
+    DisplayNoteComponent
+  ],
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css'],
+  styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-  isCollapsed = false;
+  isCollapsed = true; // ✅ collapsed by default
   isHovering = false;
-
+  viewMode: 'grid' | 'list' = 'grid';
+  onViewModeChange(mode: 'grid' | 'list') {
+  this.viewMode = mode;
+  }
   toggleSidenav() {
     this.isCollapsed = !this.isCollapsed;
   }
 
   onMouseEnter() {
-    if (this.isCollapsed) {
-      this.isHovering = true;
-    }
+    this.isHovering = true;
   }
 
   onMouseLeave() {
