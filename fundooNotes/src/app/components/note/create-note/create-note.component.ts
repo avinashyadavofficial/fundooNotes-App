@@ -29,55 +29,66 @@ import { NoteIconsComponent } from 'src/app/components/note/note-icons/note-icon
 })
 export class CreateNoteComponent {
   isExpanded = false;
+  selectedColor: string = '#fff';
 
   noteForm: FormGroup;
 
   constructor(
-  private fb: FormBuilder,
-  private noteService: NoteService,
-  private refreshService: NoteRefreshService,
-  private snackBar: MatSnackBar,
-  private elementRef:ElementRef
-) {
+    private fb: FormBuilder,
+    private noteService: NoteService,
+    private refreshService: NoteRefreshService,
+    private snackBar: MatSnackBar,
+    private elementRef: ElementRef
+  ) {
     this.noteForm = this.fb.group({
       title: [''],
       description: ['']
     });
   }
 
-  
   onFocus(): void {
     this.isExpanded = true;
   }
 
-  onClose(): void {
-  const { title, description } = this.noteForm.value;
-
-  if (title.trim() || description.trim()) {
-    this.noteService.createNote({ title, description }).subscribe({
-      next: () => {
-        this.refreshService.triggerRefresh();
-        this.snackBar.open('Note created!', 'Close', { duration: 2000 });
-        this.noteForm.reset();
-        this.isExpanded = false;
-      },
-      error: (err: any) => {
-        console.error(err);
-        this.snackBar.open('Failed to create note', 'Close', { duration: 2000 });
-      }
-    });
-  } else {
-    this.noteForm.reset();
-    this.isExpanded = false;
+  onColorChanged(color: string) {
+    this.selectedColor = color;
   }
-}
 
-@HostListener('document:click', ['$event.target'])
+  onClose(): void {
+    const { title, description } = this.noteForm.value;
+
+    if (title.trim() || description.trim()) {
+      const payload = {
+        title,
+        description,
+        color: this.selectedColor
+      };
+
+      this.noteService.createNote(payload).subscribe({
+        next: () => {
+          this.refreshService.triggerRefresh();
+          this.snackBar.open('Note created!', 'Close', { duration: 2000 });
+          this.noteForm.reset();
+          this.isExpanded = false;
+          this.selectedColor = '#fff';
+        },
+        error: (err: any) => {
+          console.error(err);
+          this.snackBar.open('Failed to create note', 'Close', { duration: 2000 });
+        }
+      });
+    } else {
+      this.noteForm.reset();
+      this.isExpanded = false;
+      this.selectedColor = '#fff';
+    }
+  }
+
+  @HostListener('document:click', ['$event.target'])
   onClickOutside(target: HTMLElement): void {
     const clickedInside = this.elementRef.nativeElement.contains(target);
     if (!clickedInside && this.isExpanded) {
-      this.onClose(); 
+      this.onClose();
     }
-}
-
+  }
 }

@@ -5,6 +5,7 @@
   border-radius: 8px;
   box-shadow: 0 1px 5px rgba(0,0,0,0.2);
   cursor: text;
+  transition: background 0.3s ease;
 }
 
 .note-header {
@@ -13,58 +14,33 @@
   align-items: center;
 }
 
-.note-title {
+.note-title,
+.note-description {
   width: 100%;
   font-size: 16px;
-  font-weight: 500;
   border: none;
   outline: none;
+  background: transparent;
+  color: #202124;
 }
 
 .note-description {
-  width: 100%;
-  font-size: 14px;
   margin: 12px 0;
-  border: none;
-  outline: none;
+  font-size: 14px;
 }
 
 .note-collapsed {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   padding: 8px;
   color: #5f6368;
 }
-
 
 .icon-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 10px;
-}
-
-.icons-expand {
-  flex: 1;
-}
-.collapsed-note {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 16px;
-  border-radius: 8px;
-  box-shadow: 0 1px 5px rgba(0,0,0,0.2);
-  width: 600px;
-  margin: 0 auto;
-  cursor: text;
-  background-color: #fff;
-   margin: 0 auto;
-}
-
-.collapsed-text {
-  color: #5f6368;
-  font-size: 15px;
 }
 
 .collapsed-icons {
@@ -79,4 +55,3 @@
   color: #5f6368;
   cursor: pointer;
 }
-

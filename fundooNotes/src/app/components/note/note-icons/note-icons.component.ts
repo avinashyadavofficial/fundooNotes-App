@@ -28,7 +28,7 @@ export class NoteIconsComponent {
   @Input() showRedo = true;
     
   @Input() note: any;
-  @Output() colorChanged = new EventEmitter<void>();
+  @Output() colorChanged = new EventEmitter<string>();
 
 colors: string[] = [
   '#ffffff', '#f28b82', '#fbbc04', '#fff475',
@@ -43,19 +43,21 @@ toggleColorPicker(): void {
 }
 
 selectColor(color: string): void {
-  if (!this.note?.id) return;
-
-  this.noteService.changeNoteColor(this.note.id, color).subscribe({
-    next: () => {
-      this.refreshService.triggerRefresh();
-      console.log('Color updated:', color);
-      this.note.color = color; 
-      this.showColorPicker = false;
-    },
-    error: (err) => {
-      console.error('Color change failed:', err);
-    }
-  });
+  if (this.note?.id) {
+    // For display-note (update via API)
+    this.noteService.changeNoteColor(this.note.id, color).subscribe({
+      next: () => {
+        this.note.color = color;
+        this.colorChanged.emit(color); // still emit for parent (optional)
+        this.showColorPicker = false;
+      },
+      
+    });
+  } else {
+    // For create-note
+    this.colorChanged.emit(color); // ✅ emit directly
+    this.showColorPicker = false;
+  }
 }
 
 
