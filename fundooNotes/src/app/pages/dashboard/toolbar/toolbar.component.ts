@@ -19,6 +19,7 @@ export class ToolbarComponent {
   @Output() menuClicked = new EventEmitter<void>();
   @Output() search = new EventEmitter<string>();
   @Output() viewModeChange = new EventEmitter<'grid' | 'list'>();
+  @Input() title: string = 'Keep';
 
   viewMode: 'grid' | 'list' = 'grid';
 

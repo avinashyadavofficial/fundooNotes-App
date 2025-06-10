@@ -8,8 +8,25 @@ export const routes: Routes = [
   { path: '', component: LoginComponent, pathMatch: 'full' },
   { path: 'register', component: RegistrationComponent },
   {
-    path: 'dashboard',
-    component: DashboardComponent,
-    canActivate: [AuthGuardService]
-  }
+  path: 'dashboard',
+  component: DashboardComponent,
+  canActivate: [AuthGuardService],
+  children: [
+    { path: '', redirectTo: 'note', pathMatch: 'full' },
+    {
+      path: 'note',
+      loadComponent: () =>
+        import('./components/note/display-note/display-note.component').then(
+          m => m.DisplayNoteComponent
+        )
+    },
+    {
+      path: 'archive',
+      loadComponent: () =>
+        import('./components/archive/archive.component').then(
+          m => m.ArchiveComponent
+        )
+    }
+  ]
+}
 ];

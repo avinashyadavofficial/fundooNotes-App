@@ -5,6 +5,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { CreateNoteComponent } from '../../components/note/create-note/create-note.component';
 import { DisplayNoteComponent } from '../../components/note/display-note/display-note.component';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,7 +16,8 @@ import { DisplayNoteComponent } from '../../components/note/display-note/display
     ToolbarComponent,
     SidenavComponent,
     CreateNoteComponent,
-    DisplayNoteComponent
+    DisplayNoteComponent,
+    RouterOutlet
   ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']

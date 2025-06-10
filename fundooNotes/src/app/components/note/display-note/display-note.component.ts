@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NoteService } from 'src/app/services/note/note.service';
 import { MatCardModule } from '@angular/material/card';
 import { NoteRefreshService } from 'src/app/services/note/note-refresh.service';
 import { NoteIconsComponent } from 'src/app/components/note/note-icons/note-icons.component';
 import { MatIconModule } from '@angular/material/icon';
-import { Input } from '@angular/core';
+
 @Component({
   selector: 'app-display-note',
   standalone: true,
@@ -15,29 +15,44 @@ import { Input } from '@angular/core';
 })
 export class DisplayNoteComponent implements OnInit {
   @Input() viewMode: 'grid' | 'list' = 'grid';
-  notes: any[] = []; 
+  @Input() showArchivedOnly: boolean = false;
+
+  notes: any[] = [];
 
   constructor(
-  private noteService: NoteService,
-  private refreshService: NoteRefreshService
-) {}
+    private noteService: NoteService,
+    private refreshService: NoteRefreshService
+  ) {}
 
   ngOnInit(): void {
-    this.fetchNotes(); 
+    this.loadNotes();
+
     this.refreshService.refreshNeeded.subscribe(() => {
-    this.fetchNotes();
-  });
+      this.loadNotes();
+    });
   }
 
-  fetchNotes(): void {
-    this.noteService.getNotes().subscribe({
-      next: (res: any) => {
-         console.log('Notes:', res.data.data);
-        this.notes = res.data.data.filter((note: any) => !note.isArchived && !note.isDeleted);
-      },
-      error: (err) => {
-        console.error('Error fetching notes:', err);
-      }
-    });
+  loadNotes(): void {
+    if (this.showArchivedOnly) {
+      this.noteService.getArchivedNotes().subscribe({
+        next: (res: any) => {
+          console.log('Archived Notes:', res.data.data);
+          this.notes = res.data.data;
+        },
+        error: (err) => {
+          console.error('Error fetching archived notes:', err);
+        }
+      });
+    } else {
+      this.noteService.getNotes().subscribe({
+        next: (res: any) => {
+          console.log('Notes:', res.data.data);
+          this.notes = res.data.data.filter((note: any) => !note.isArchived && !note.isDeleted);
+        },
+        error: (err) => {
+          console.error('Error fetching notes:', err);
+        }
+      });
+    }
   }
 }

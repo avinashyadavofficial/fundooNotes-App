@@ -44,21 +44,30 @@ toggleColorPicker(): void {
 
 selectColor(color: string): void {
   if (this.note?.id) {
-    // For display-note (update via API)
     this.noteService.changeNoteColor(this.note.id, color).subscribe({
       next: () => {
         this.note.color = color;
-        this.colorChanged.emit(color); // still emit for parent (optional)
+        this.colorChanged.emit(color); 
         this.showColorPicker = false;
       },
       
     });
   } else {
-    // For create-note
-    this.colorChanged.emit(color); // ✅ emit directly
+    this.colorChanged.emit(color); 
     this.showColorPicker = false;
   }
 }
+  archiveNote(): void {
+  if (!this.note || !this.note.id) return;
 
+  this.noteService.archiveNote(this.note.id).subscribe({
+    next: () => {
+      this.refreshService.triggerRefresh(); 
+    },
+    error: (err) => {
+      console.error('Archive failed:', err);
+    }
+  });
+}
 
 }

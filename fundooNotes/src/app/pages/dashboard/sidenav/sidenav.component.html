@@ -1,50 +1,48 @@
 <mat-nav-list class="nav-list">
-  <div
-    class="nav-link"
-    [ngClass]="{ active: activeItem === 'notes' }"
-    (click)="chooseNav('notes')"
-  >
+  <!-- Notes -->
+  <a mat-list-item
+     class="nav-link"
+     [routerLink]="['/dashboard/note']"
+     routerLinkActive="active"
+     [routerLinkActiveOptions]="{ exact: true }">
     <mat-icon class="material-symbols-outlined seltoggle">lightbulb</mat-icon>
     <span *ngIf="!collapsed">Notes</span>
-  </div>
-  <div
-    class="nav-link"
-    [ngClass]="{ active: activeItem === 'reminders' }"
-    (click)="chooseNav('reminders')"
-  >
+  </a>
+
+  <!-- Reminders -->
+  <a mat-list-item
+     class="nav-link"
+     [routerLink]="['/dashboard/reminders']"
+     routerLinkActive="active">
     <mat-icon class="material-symbols-outlined seltoggle">notifications</mat-icon>
     <span *ngIf="!collapsed">Reminders</span>
-  </div>
-  <div
-    class="nav-link"
-    [ngClass]="{ active: activeItem === 'labels' }"
-    (click)="chooseNav('labels')"
-  >
-    <mat-icon class="material-symbols-outlined seltoggle">label</mat-icon>
-    <span *ngIf="!collapsed">Note</span>
-  </div>
-   <div
-    class="nav-link"
-    [ngClass]="{ active: activeItem === 'editlabels' }"
-    (click)="chooseNav('editlabels')"
-  >
+  </a>
+
+ 
+  <!-- Edit Labels -->
+  <a mat-list-item
+     class="nav-link"
+     [routerLink]="['/dashboard/editlabels']"
+     routerLinkActive="active">
     <mat-icon class="material-symbols-outlined seltoggle">edit</mat-icon>
     <span *ngIf="!collapsed">Edit labels</span>
-  </div>
-  <div
-    class="nav-link"
-    [ngClass]="{ active: activeItem === 'archive' }"
-    (click)="chooseNav('archive')"
-  >
+  </a>
+
+  <!-- Archive -->
+  <a mat-list-item
+     class="nav-link"
+     [routerLink]="['/dashboard/archive']"
+     routerLinkActive="active">
     <mat-icon class="material-symbols-outlined seltoggle">archive</mat-icon>
     <span *ngIf="!collapsed">Archive</span>
-  </div>
-  <div
-    class="nav-link"
-    [ngClass]="{ active: activeItem === 'trash' }"
-    (click)="chooseNav('trash')"
-  >
+  </a>
+
+  <!-- Trash -->
+  <a mat-list-item
+     class="nav-link"
+     [routerLink]="['/dashboard/trash']"
+     routerLinkActive="active">
     <mat-icon class="material-symbols-outlined seltoggle">delete</mat-icon>
     <span *ngIf="!collapsed">Trash</span>
-  </div>
+  </a>
 </mat-nav-list>
