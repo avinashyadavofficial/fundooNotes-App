@@ -7,3 +7,21 @@
 .material-symbols-outlined seltoggle{
     font-size: smaller;
 }
+.icon-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  padding: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.icon-button:hover {
+  background-color: rgba(60, 64, 67, 0.1); 
+  cursor: pointer;
+}
+
+.icon-button mat-icon {
+  font-size: 20px;
+  color: #5f6368;
+}

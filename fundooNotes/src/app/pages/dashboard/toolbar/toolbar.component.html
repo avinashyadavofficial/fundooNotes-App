@@ -1,10 +1,10 @@
 <mat-toolbar class="topbar" color="default">
-  <!-- Menu Toggle Button -->
-  <button mat-icon-button class="icon-btn" (click)="onMenuClick()">
+  
+  <button mat-icon-button class="icon-button" (click)="onMenuClick()">
     <mat-icon>menu</mat-icon>
   </button>
 
-  <!-- Google Keep Logo + Title -->
+ 
   <img
     src="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png"
     class="logo"
@@ -12,9 +12,11 @@
   />
   <span class="title">{{ title }}</span>
 
-  <!-- Search Bar -->
+  
   <div class="search-container">
-    <mat-icon class="search-icon">search</mat-icon>
+    <div class="search-icon-wrapper icon-button">
+      <mat-icon>search</mat-icon>
+    </div>
     <input
       matInput
       [(ngModel)]="searchText"
@@ -24,30 +26,31 @@
     />
   </div>
 
-  <!-- Action Icons -->
+  
   <div class="icon-container">
-    <button mat-icon-button>
-      <mat-icon class="material-symbols-outlined seltoggle">refresh</mat-icon>
-    </button>
+    <div class="icon-button">
+      <mat-icon class="material-symbols-outlined">refresh</mat-icon>
+    </div>
 
-    <mat-icon
-      class="material-symbols-outlined seltoggle"
-      (click)="toggleViewMode()"
-      title="Toggle view"
-    >
-      {{ viewMode === 'grid' ? 'view_agenda' : 'grid_view' }}
-    </mat-icon>
+    <div class="icon-button" (click)="toggleViewMode()" title="Toggle view">
+      <mat-icon class="material-symbols-outlined">
+        {{ viewMode === 'grid' ? 'view_agenda' : 'grid_view' }}
+      </mat-icon>
+    </div>
 
-    <button mat-icon-button>
-      <mat-icon class="material-symbols-outlined seltoggle">settings</mat-icon>
-    </button>
+    <div class="icon-button">
+      <mat-icon class="material-symbols-outlined">settings</mat-icon>
+    </div>
   </div>
 
-  <!-- Google Account Icons -->
+  
   <div class="google-container">
-    <button mat-icon-button>
-      <mat-icon class="material-symbols-outlined seltoggle">apps</mat-icon>
-    </button>
-    <mat-icon class="user-icon">account_circle</mat-icon>
+    <div class="icon-button">
+      <mat-icon class="material-symbols-outlined">apps</mat-icon>
+    </div>
+
+    <div class="icon-button">
+      <mat-icon class="user-icon">account_circle</mat-icon>
+    </div>
   </div>
 </mat-toolbar>

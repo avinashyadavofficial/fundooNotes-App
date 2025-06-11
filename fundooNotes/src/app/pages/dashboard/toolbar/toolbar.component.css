@@ -1,73 +1,105 @@
 .topbar {
   display: flex;
+  align-items: center;
   background-color: white;
+  height: 64px;
   border-bottom: 1px solid #ddd;
-  padding: 10px;
-}
-
-.icon-btn {
-  margin-right: 5px;
-  color: #5f6368;
+  padding: 0 16px;
+  box-sizing: border-box;
+  margin-top: -8px;
 }
 
 .logo {
   width: 40px;
   height: 40px;
-  margin-right: 6px;
+  margin: 0 6px 0 4px;
 }
 
 .title {
   font-size: 22px;
   font-family: "Product Sans", Arial, sans-serif;
-  padding-left: 4px;
-  margin-right: 30px;
   color: #5f6368;
+  margin-right: 30px;
 }
 
 .search-container {
   display: flex;
   align-items: center;
-  background: #f1f3f4;
-  padding: 4px 12px;
+  background-color: #f1f3f4;
   border-radius: 8px;
-  width: 50%;
-  max-width: 680px;
-  height: 40px;
-  margin-left: 54px;
+  height: 48px;
+  width: 100%;
+  max-width: 700px;
+  margin-left: 60px;
+  padding: 0 12px 0 0;
 }
 
-.search-icon {
-  color: #5f6368;
-  margin-right: 12px;
+.search-icon-wrapper {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.search-icon-wrapper:hover {
+  background-color: rgba(60, 64, 67, 0.1);
 }
 
 .search-input {
   border: none;
-  font-size: 17px;
+  font-size: 16px;
   background: transparent;
-  width: 100%;
   outline: none;
+  width: 100%;
+  color: #202124;
+  padding-left: 8px;
+}
+
+.icon-button {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.icon-button:hover {
+  
+  background-color: rgba(60, 64, 67, 0.1);
 }
 
 .icon-container {
-  padding-left: 150px;
   display: flex;
   align-items: center;
-  color: #5f6368;
-  gap: 12px;
+  gap: 0.1px;
+  width: 20%;
+  margin-left: 90px;
 }
 
 .google-container {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 0.1px;
+  margin-left: 20px;
+  margin-right: -20px;
+}
+
+mat-icon,
+.material-symbols-outlined,
+.user-icon {
+  font-size: 24px !important;  
   color: #5f6368;
 }
 
-.user-icon {
-  font-size: 32px;
-  height: 32px;
+/* .user-icon {
   width: 32px;
-  padding: 4px;
-  color: #5f6368;
-}
+  height: 32px;
+  border-radius: 50%;
+} */
