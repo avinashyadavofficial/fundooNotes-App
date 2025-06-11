@@ -33,11 +33,7 @@ export class NoteService {
   }
 
   
-  archiveNote(noteId: string): Observable<any> {
-    const payload = {
-      noteIdList: [noteId],
-      isArchived: true
-    };
+  archiveNote(payload: any) {
     return this.http.postApi('notes/archiveNotes', payload, this.http.getHeader());
   }
 
@@ -48,15 +44,9 @@ export class NoteService {
   togglePinNote(payload: { noteIdList: string[], isPined: boolean }): Observable<any> {
     return this.http.postApi('notes/pinUnpinNotes', payload, this.http.getHeader());
   }
-  restoreNote(payload: any) {
-    return this.http.postApi('notes/updateNotes', payload, this.http.getHeader());
-  }
 
   deleteForever(payload: any) {
     return this.http.postApi('notes/deleteForeverNotes', payload, this.http.getHeader());
-  }
-  updateNote(payload: any) {
-    return this.http.postApi('notes/updateNotes', payload, this.http.getHeader());
   }
   trashNote(payload: any) {
     return this.http.postApi('notes/trashNotes', payload, this.http.getHeader());

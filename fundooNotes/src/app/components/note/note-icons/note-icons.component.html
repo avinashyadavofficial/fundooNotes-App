@@ -22,11 +22,38 @@
   </div>
   <div class="icon-button">
     <mat-icon class="material-symbols-outlined seltoggle" *ngIf="showArchive" (click)="onArchiveClick()" title="Archive">archive</mat-icon>
+    </div>
+  <div class="icon-button">
+  <mat-icon
+  *ngIf="showUnarchive"
+  class="material-symbols-outlined seltoggle"
+  (click)="onUnArchiveClick()"
+  title="Unarchive"
+>
+  unarchive
+</mat-icon>
+  
   </div>
   <mat-menu #menu="matMenu">
     <button mat-menu-item (click)="onDeleteClick()">
       <span>Delete note</span>
     </button>
+    <button mat-menu-item >
+      <span>Add Level</span>
+    </button>
+    <button mat-menu-item >
+      <span>Add Drawing</span>
+    </button>
+    <button mat-menu-item >
+      <span>Make a copy</span>
+    </button>
+    <button mat-menu-item >
+      <span>Show tick boxes</span>
+    </button>
+    <button mat-menu-item >
+      <span>Version history</span>
+    </button>
+
   </mat-menu>
 
   <div class="icon-button">

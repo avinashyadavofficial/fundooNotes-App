@@ -23,6 +23,8 @@ export class NoteIconsComponent {
   @Input() showMore = true;
   @Input() showUndo = true;
   @Input() showRedo = true;
+  @Input() showUnarchive = false;
+
 
   @Output() colorChanged = new EventEmitter<string>();
 
@@ -62,15 +64,34 @@ export class NoteIconsComponent {
   }
 
   onArchiveClick(): void {
-    if (!this.note?.id) return;
+    const payload = {
+      noteIdList: [this.note?.id],
+      isArchived: true
+    };
 
-    this.noteService.archiveNote(this.note.id).subscribe({
+    this.noteService.archiveNote(payload).subscribe({
       next: () => {
         console.log('Archived note, triggering refresh');
         this.refreshService.triggerRefresh(); 
       },
       error: (err) => {
         console.error('Archive failed:', err);
+      }
+    });
+  }
+   onUnArchiveClick(): void {
+    const payload = {
+      noteIdList: [this.note?.id],
+      isArchived: false
+    };
+
+    this.noteService.archiveNote(payload).subscribe({
+      next: () => {
+        console.log('Unarchived note, triggering refresh');
+        this.refreshService.triggerRefresh(); 
+      },
+      error: (err) => {
+        console.error('Unarchived failed:', err);
       }
     });
   }
@@ -107,6 +128,8 @@ export class NoteIconsComponent {
     }
   });
 }
+ 
+
 
 
 

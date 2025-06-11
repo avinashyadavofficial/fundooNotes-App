@@ -46,7 +46,7 @@ export class DisplayNoteComponent implements OnInit, OnChanges {
   this.noteService.getNotes().subscribe({
     next: (res: any) => {
       const allNotes = res.data?.data || [];
-      this.notes = allNotes.filter((note: any) => !note.isArchived && !note.isDeleted);
+      this.notes = allNotes.filter((note: any) => !note.isArchived && !note.isDeleted).reverse();
     },
     error: (err) => {
       console.error('Error fetching notes:', err);
