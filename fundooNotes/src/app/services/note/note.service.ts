@@ -59,8 +59,8 @@ export class NoteService {
     return this.http.postApi('notes/updateNotes', payload, this.http.getHeader());
   }
   trashNote(payload: any) {
-  return this.http.postApi('notes/trashNotes', payload, this.http.getHeader());
-}
+    return this.http.postApi('notes/trashNotes', payload, this.http.getHeader());
+  }
 
 
 

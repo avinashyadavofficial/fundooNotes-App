@@ -1,37 +1,47 @@
 <div class="icon-toolbar">
-  
-  <mat-icon class="material-symbols-outlined seltoggle" *ngIf="showColor" (click)="toggleColorPicker()" title="Background color">
+  <div class="icon-button">
+    <mat-icon class="material-symbols-outlined seltoggle" *ngIf="showColor" (click)="toggleColorPicker()" title="Background color">
     palette
   </mat-icon>
+  </div>
+  
 
  
   <div *ngIf="showColorPicker" class="color-picker">
     <div *ngFor="let color of colors" class="color-circle" [style.background]="color" (click)="selectColor(color)"></div>
   </div>
 
-  
-  <mat-icon class="material-symbols-outlined seltoggle" *ngIf="showReminder" title="Remind me">notifications</mat-icon>
-  <mat-icon class="material-symbols-outlined seltoggle" *ngIf="showCollaborator" title="Collaborator">person_add</mat-icon>
-  <mat-icon class="material-symbols-outlined seltoggle" *ngIf="showImage" title="Add image">image</mat-icon>
-  <mat-icon class="material-symbols-outlined seltoggle" *ngIf="showArchive" (click)="onArchiveClick()" title="Archive">archive</mat-icon>
-  <mat-icon class="material-symbols-outlined seltoggle" *ngIf="showTrash" title="Trash">delete</mat-icon>
+  <div class="icon-button">
+    <mat-icon class="material-symbols-outlined seltoggle" *ngIf="showReminder" title="Remind me">notifications</mat-icon>
+  </div>
+  <div class="icon-button">
+     <mat-icon class="material-symbols-outlined seltoggle" *ngIf="showCollaborator" title="Collaborator">person_add</mat-icon>
+  </div>
+  <div class="icon-button">
+    <mat-icon class="material-symbols-outlined seltoggle" *ngIf="showImage" title="Add image">image</mat-icon>
+  </div>
+  <div class="icon-button">
+    <mat-icon class="material-symbols-outlined seltoggle" *ngIf="showArchive" (click)="onArchiveClick()" title="Archive">archive</mat-icon>
+  </div>
   <mat-menu #menu="matMenu">
-  <button mat-menu-item (click)="onDeleteClick()">
-    <span>Delete note</span>
-  </button>
-  
-</mat-menu>
+    <button mat-menu-item (click)="onDeleteClick()">
+      <span>Delete note</span>
+    </button>
+  </mat-menu>
 
-
-<mat-icon
-  class="material-symbols-outlined seltoggle"
-  [matMenuTriggerFor]="menu"
-  title="More"
->
-  more_vert
-</mat-icon>
-
-  <mat-icon class="material-symbols-outlined seltoggle" *ngIf="showUndo" title="Undo">undo</mat-icon>
+  <div class="icon-button">
+    <mat-icon
+    class="material-symbols-outlined seltoggle"
+    [matMenuTriggerFor]="menu"
+    title="More"
+    >
+    more_vert
+    </mat-icon>
+  </div>
+    <mat-icon class="material-symbols-outlined seltoggle" *ngIf="showUndo" title="Undo">undo</mat-icon>
   <mat-icon class="material-symbols-outlined seltoggle" *ngIf="showRedo" title="Redo">redo</mat-icon>
-  <mat-icon class="material-symbols-outlined seltoggle" (click)="onPinClick()" title="Pin">push_pin</mat-icon>
+  <div class="icon-button">
+    <mat-icon class="pin-icon material-symbols-outlined seltoggle" (click)="onPinClick()" title="Pin">push_pin</mat-icon>
+  </div>
+  
 </div>

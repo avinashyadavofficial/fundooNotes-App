@@ -3,7 +3,7 @@
   justify-content: left;
   align-items: center;
   width: 100%;
-  gap: 12px;
+  gap: 1px;
   margin-bottom: 1px;
 }
 
@@ -33,5 +33,21 @@
   border-radius: 50%;
   cursor: pointer;
   border: 1px solid #ccc;
+}
+.pin-icon {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 1;
+  cursor: pointer;
+  font-size: 20px;
+  color: #5f6368;
+  padding: 6px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.pin-icon:hover {
+  background-color: rgba(60, 64, 67, 0.1);
 }
 
