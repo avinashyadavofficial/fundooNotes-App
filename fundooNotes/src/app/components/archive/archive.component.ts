@@ -41,7 +41,8 @@ export class ArchiveComponent implements OnInit, OnDestroy {
   loadArchivedNotes(): void {
     this.noteService.getArchivedNotes().subscribe({
       next: (res: any) => {
-        this.archivedNotes = res.data?.data || [];
+        const data = res.data?.data || [];
+        this.archivedNotes = data.filter((note: any) => !note.isDeleted);
       },
       error: (err) => {
         console.error('Failed to load archived notes:', err);

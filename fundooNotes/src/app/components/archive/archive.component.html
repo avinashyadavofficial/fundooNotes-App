@@ -1,4 +1,4 @@
-<!-- ARCHIVED NOTES LIST -->
+
 <div *ngIf="archivedNotes.length > 0; else emptyArchive" [ngClass]="viewMode === 'grid' ? 'note-grid' : 'note-list'">
   <mat-card
     *ngFor="let note of archivedNotes"
@@ -28,7 +28,7 @@
   </mat-card>
 </div>
 
-<!-- EMPTY STATE -->
+
 <ng-template #emptyArchive>
   <div class="empty-archive">
     <img src="/archive" alt="Archive Icon" />
