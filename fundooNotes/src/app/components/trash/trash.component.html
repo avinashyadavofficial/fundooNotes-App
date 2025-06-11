@@ -1,5 +1,6 @@
 <div class="trash-header">
-  <span>Notes in the Recycle Bin are deleted after 7 days.</span>
+  <span><i>Notes in the Recycle Bin are deleted after 7 days.</i></span>
+  <button>Empty bin</button>
 </div>
 
 <div *ngIf="trashedNotes.length > 0; else emptyTrash" [ngClass]="viewMode === 'grid' ? 'note-grid' : 'note-list'">
@@ -10,15 +11,22 @@
     (mouseenter)="note.showIcons = true"
     (mouseleave)="note.showIcons = false"
   >
-    <div class="note-content">
+    
       <h3>{{ note.title }}</h3>
       <p>{{ note.description }}</p>
 
       <div class="note-icons-wrapper" [class.hidden]="!note.showIcons">
-        <mat-icon class="material-symbols-outlined seltoggle" (click)="restoreNote(note.id)">restore_from_trash</mat-icon>
-        <mat-icon class="material-symbols-outlined seltoggle" (click)="deleteNoteForever(note.id)">delete_forever</mat-icon>
+
+        <div class="icon-button" (click)="restoreNote(note.id)">
+          <mat-icon title="Restore">restore_from_trash</mat-icon>
+        </div>
+
+        <div class="icon-button" (click)="deleteNoteForever(note.id)">
+          <mat-icon title="Delete forever">delete_forever</mat-icon>
+        </div>
+
       </div>
-    </div>
+    
   </mat-card>
 </div>
 

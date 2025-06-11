@@ -6,13 +6,14 @@ import { ViewService } from 'src/app/services/view/view.service';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-trash',
   standalone: true,
   templateUrl: './trash.component.html',
   styleUrls: ['./trash.component.css'],
-  imports: [CommonModule, MatCardModule, MatIconModule]
+  imports: [CommonModule, MatCardModule, MatIconModule,MatDialogModule]
 })
 export class TrashComponent implements OnInit, OnDestroy {
   trashedNotes: any[] = [];
