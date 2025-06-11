@@ -23,25 +23,27 @@ import { RouterOutlet } from '@angular/router';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-  isCollapsed = true; // ✅ collapsed by default
+  isCollapsed = true;
   isHovering = false;
   viewMode: 'grid' | 'list' = 'grid';
-  onViewModeChange(mode: 'grid' | 'list') {
-  this.viewMode = mode;
-  }
-  toggleSidenav() {
+
+  toggleSidenav(): void {
     this.isCollapsed = !this.isCollapsed;
   }
 
-  onMouseEnter() {
+  onMouseEnter(): void {
     this.isHovering = true;
   }
 
-  onMouseLeave() {
+  onMouseLeave(): void {
     this.isHovering = false;
   }
 
   get sidenavCollapsed(): boolean {
     return this.isCollapsed && !this.isHovering;
+  }
+
+  onViewModeChange(mode: 'grid' | 'list'): void {
+    this.viewMode = mode;
   }
 }

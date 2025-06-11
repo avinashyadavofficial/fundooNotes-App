@@ -11,7 +11,7 @@ export class NoteRefreshService {
     return this.refreshNeeded$.asObservable();
   }
 
-  triggerRefresh() {
+  triggerRefresh(): void {
     this.refreshNeeded$.next();
   }
 }

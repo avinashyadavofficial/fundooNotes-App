@@ -1,0 +1,30 @@
+<div class="trash-header">
+  <span>Notes in the Recycle Bin are deleted after 7 days.</span>
+</div>
+
+<div *ngIf="trashedNotes.length > 0; else emptyTrash" [ngClass]="viewMode === 'grid' ? 'note-grid' : 'note-list'">
+  <mat-card
+    *ngFor="let note of trashedNotes"
+    class="note-card"
+    [style.background]="note.color || '#fff'"
+    (mouseenter)="note.showIcons = true"
+    (mouseleave)="note.showIcons = false"
+  >
+    <div class="note-content">
+      <h3>{{ note.title }}</h3>
+      <p>{{ note.description }}</p>
+
+      <div class="note-icons-wrapper" [class.hidden]="!note.showIcons">
+        <mat-icon class="material-symbols-outlined seltoggle" (click)="restoreNote(note.id)">restore_from_trash</mat-icon>
+        <mat-icon class="material-symbols-outlined seltoggle" (click)="deleteNoteForever(note.id)">delete_forever</mat-icon>
+      </div>
+    </div>
+  </mat-card>
+</div>
+
+<ng-template #emptyTrash>
+  <div class="empty-trash">
+    <img src="/trash" alt="Empty Trash" />
+    <p>No notes in Recycle Bin</p>
+  </div>
+</ng-template>

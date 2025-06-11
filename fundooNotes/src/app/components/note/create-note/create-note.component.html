@@ -5,13 +5,24 @@
 >
   <form [formGroup]="noteForm" *ngIf="isExpanded">
     <div class="note-header">
-      <input matInput formControlName="title" placeholder="Title" class="note-title" />
-      <button mat-icon-button class="material-symbols-outlined seltoggle">
+      <input
+        matInput
+        formControlName="title"
+        placeholder="Title"
+        class="note-title"
+      />
+
+      <button mat-icon-button>
         <mat-icon>push_pin</mat-icon>
       </button>
     </div>
 
-    <input matInput formControlName="description" placeholder="Take a note..." class="note-description" />
+    <input
+      matInput
+      formControlName="description"
+      placeholder="Take a note..."
+      class="note-description"
+    />
 
     <div class="icon-footer">
       <app-note-icons
@@ -28,16 +39,16 @@
         [showRedo]="false"
       ></app-note-icons>
 
-      <button mat-button (click)="onClose()">Close</button>
+      <button mat-button type="button" (click)="onClose()">Close</button>
     </div>
   </form>
 
   <div *ngIf="!isExpanded" class="note-collapsed">
     <span>Take a note...</span>
     <div class="collapsed-icons">
-      <mat-icon class="material-symbols-outlined seltoggle">check_box</mat-icon>
-      <mat-icon class="material-symbols-outlined seltoggle">brush</mat-icon>
-      <mat-icon class="material-symbols-outlined seltoggle">image</mat-icon>
+      <mat-icon>check_box</mat-icon>
+      <mat-icon>brush</mat-icon>
+      <mat-icon>image</mat-icon>
     </div>
   </div>
 </mat-card>

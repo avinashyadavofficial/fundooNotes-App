@@ -1,17 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
-import { Input,Output,EventEmitter } from '@angular/core';
+import { RouterModule, Router } from '@angular/router';
+import { ViewService } from 'src/app/services/view/view.service';
 
 @Component({
   selector: 'app-toolbar',
   standalone: true,
-  imports: [CommonModule,MatToolbarModule, MatButtonModule, MatIconModule,MatFormFieldModule,MatInputModule,FormsModule],
+  imports: [
+    CommonModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    RouterModule
+  ],
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.css']
 })
@@ -22,17 +32,23 @@ export class ToolbarComponent {
   @Input() title: string = 'Keep';
 
   viewMode: 'grid' | 'list' = 'grid';
+  searchText = '';
 
-  toggleViewMode() {
-    this.viewMode = this.viewMode === 'grid' ? 'list' : 'grid';
-    this.viewModeChange.emit(this.viewMode); // send to parent (dashboard)
+  constructor(private viewService: ViewService, private router: Router) {}
+
+  onMenuClick(): void {
+    this.menuClicked.emit();
   }
 
-  searchText = '';
+  toggleViewMode(): void {
+    this.viewMode = this.viewMode === 'grid' ? 'list' : 'grid';
+    this.viewService.setViewMode(this.viewMode);
+    this.viewModeChange.emit(this.viewMode);
+  }
+
   
-
-
-  onMenuClick() {
-    this.menuClicked.emit();
+  updateTitleFromRoute(): void {
+    const current = this.router.url;
+    this.title = current.includes('/archive') ? 'Archive' : 'Keep';
   }
 }

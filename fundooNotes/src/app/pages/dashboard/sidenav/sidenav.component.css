@@ -5,76 +5,42 @@
   padding: 4px 0;
 }
 
-
-
 .nav-link {
   display: flex;
   align-items: center;
-  height: 30px;
+  height: 40px;
   border-radius: 0 24px 24px 0;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
 }
 
-
 .nav-link mat-icon {
-  font-size: 25px;
+  font-size: 24px;
   color: #5f6368;
-  flex-shrink: 0;
+  margin-right: 16px;
 }
-
 
 .nav-link span {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   color: #202124;
-  white-space: nowrap;
-  padding: 10px ;
-
 }
-
 
 .nav-link:hover {
   background-color: rgba(95, 99, 104, 0.1);
 }
 
 .nav-link.active {
-  background-color: #feefc3; 
-  border-radius: 0 24px 24px 0;
+  background-color: #feefc3;
 }
-
 
 :host-context(.collapsed-nav) .nav-link {
   width: 55px;
   height: 55px;
   border-radius: 50%;
-  display: flex;
-  align-items: center;   
-  justify-content: center; 
-}
-
-
-:host-context(.collapsed-nav) .nav-link:hover {
-  background-color: rgba(95, 99, 104, 0.1);
-}
-
-:host-context(.collapsed-nav) .nav-link.active {
-  background-color: #feefc3;
-  border-radius: 50%;
-}
-
-:host-context(.collapsed-nav) .nav-link mat-icon {
-  margin: 0;
-  transform: translateY(1px);
+  justify-content: center;
 }
 
 :host-context(.collapsed-nav) .nav-link span {
   display: none;
-}
-
-.material-symbols-outlined {
-  font-family: "Material Symbols Outlined";
-  font-size: 30px;
-  color: #0d0d0e;
-  cursor: pointer;
 }

@@ -1,15 +1,16 @@
-import { Component, ElementRef, HostListener } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { NoteService } from 'src/app/services/note/note.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+
+import { NoteService } from 'src/app/services/note/note.service';
 import { NoteRefreshService } from 'src/app/services/note/note-refresh.service';
-import { NoteIconsComponent } from 'src/app/components/note/note-icons/note-icons.component';
+import { NoteIconsComponent } from '../note-icons/note-icons.component';
 
 @Component({
   selector: 'app-create-note',
@@ -29,16 +30,14 @@ import { NoteIconsComponent } from 'src/app/components/note/note-icons/note-icon
 })
 export class CreateNoteComponent {
   isExpanded = false;
-  selectedColor: string = '#fff';
-
+  selectedColor = '#ffffff';
   noteForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,
     private noteService: NoteService,
     private refreshService: NoteRefreshService,
-    private snackBar: MatSnackBar,
-    private elementRef: ElementRef
+    private snackBar: MatSnackBar
   ) {
     this.noteForm = this.fb.group({
       title: [''],
@@ -50,45 +49,35 @@ export class CreateNoteComponent {
     this.isExpanded = true;
   }
 
-  onColorChanged(color: string) {
+  onColorChanged(color: string): void {
     this.selectedColor = color;
   }
 
   onClose(): void {
     const { title, description } = this.noteForm.value;
 
-    if (title.trim() || description.trim()) {
-      const payload = {
-        title,
-        description,
-        color: this.selectedColor
-      };
-
-      this.noteService.createNote(payload).subscribe({
-        next: () => {
-          this.refreshService.triggerRefresh();
-          this.snackBar.open('Note created!', 'Close', { duration: 2000 });
-          this.noteForm.reset();
-          this.isExpanded = false;
-          this.selectedColor = '#fff';
-        },
-        error: (err: any) => {
-          console.error(err);
-          this.snackBar.open('Failed to create note', 'Close', { duration: 2000 });
-        }
-      });
-    } else {
-      this.noteForm.reset();
-      this.isExpanded = false;
-      this.selectedColor = '#fff';
+    if (!title.trim() && !description.trim()) {
+      this.resetForm();
+      return;
     }
+
+    const payload = { title, description, color: this.selectedColor };
+
+    this.noteService.createNote(payload).subscribe({
+      next: () => {
+        this.snackBar.open('Note created!', 'Close', { duration: 2000 });
+        this.refreshService.triggerRefresh();
+        this.resetForm();
+      },
+      error: () => {
+        this.snackBar.open('Failed to create note', 'Close', { duration: 2000 });
+      }
+    });
   }
 
-  @HostListener('document:click', ['$event.target'])
-  onClickOutside(target: HTMLElement): void {
-    const clickedInside = this.elementRef.nativeElement.contains(target);
-    if (!clickedInside && this.isExpanded) {
-      this.onClose();
-    }
+  private resetForm(): void {
+    this.noteForm.reset();
+    this.selectedColor = '#ffffff';
+    this.isExpanded = false;
   }
 }

@@ -5,7 +5,7 @@ import { HttpService } from '../http_service/http.service';
   providedIn: 'root'
 })
 export class UserService {
-  constructor(private http: HttpService) { }
+  constructor(private http: HttpService) {}
 
   login(payload: any) {
     return this.http.postApi('user/login', payload);

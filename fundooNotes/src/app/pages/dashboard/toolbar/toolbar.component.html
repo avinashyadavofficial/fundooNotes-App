@@ -1,32 +1,53 @@
 <mat-toolbar class="topbar" color="default">
-<button mat-icon-button class="icon-btn" (click)="onMenuClick()">
+  <!-- Menu Toggle Button -->
+  <button mat-icon-button class="icon-btn" (click)="onMenuClick()">
     <mat-icon>menu</mat-icon>
   </button>
 
+  <!-- Google Keep Logo + Title -->
+  <img
+    src="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png"
+    class="logo"
+    alt="Keep Logo"
+  />
+  <span class="title">{{ title }}</span>
 
-  <img src="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png" class="logo" alt="Keep Logo">
-  <span class="toolbar-title">{{ title }}</span>
-
+  <!-- Search Bar -->
   <div class="search-container">
-    <mat-icon class="search-icon" >search</mat-icon>
-    <input matInput placeholder="Search" [(ngModel)]="searchText" (ngModelChange)="search.emit(searchText)" class="search-input" />
+    <mat-icon class="search-icon">search</mat-icon>
+    <input
+      matInput
+      [(ngModel)]="searchText"
+      (ngModelChange)="search.emit(searchText)"
+      placeholder="Search"
+      class="search-input"
+    />
   </div>
 
-  
+  <!-- Action Icons -->
   <div class="icon-container">
-  <button mat-icon-button><mat-icon class="material-symbols-outlined seltoggle">refresh</mat-icon></button>
-  <mat-icon
-  class="material-symbols-outlined seltoggle"
-  (click)="toggleViewMode()"
-  title="Toggle view"
-  >
-  {{ viewMode === 'grid' ? 'view_agenda' : 'grid_view' }}
-</mat-icon>
+    <button mat-icon-button>
+      <mat-icon class="material-symbols-outlined seltoggle">refresh</mat-icon>
+    </button>
 
-  <button mat-icon-button><mat-icon class="material-symbols-outlined seltoggle">settings</mat-icon></button>
+    <mat-icon
+      class="material-symbols-outlined seltoggle"
+      (click)="toggleViewMode()"
+      title="Toggle view"
+    >
+      {{ viewMode === 'grid' ? 'view_agenda' : 'grid_view' }}
+    </mat-icon>
+
+    <button mat-icon-button>
+      <mat-icon class="material-symbols-outlined seltoggle">settings</mat-icon>
+    </button>
   </div>
+
+  <!-- Google Account Icons -->
   <div class="google-container">
-  <button mat-icon-button><mat-icon class="material-symbols-outlined seltoggle">apps</mat-icon></button>
-  <mat-icon class="user-icon">account_circle</mat-icon>
+    <button mat-icon-button>
+      <mat-icon class="material-symbols-outlined seltoggle">apps</mat-icon>
+    </button>
+    <mat-icon class="user-icon">account_circle</mat-icon>
   </div>
 </mat-toolbar>

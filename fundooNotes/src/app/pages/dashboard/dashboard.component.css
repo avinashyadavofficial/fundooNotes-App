@@ -1,6 +1,6 @@
 .main-layout {
   flex-grow: 1;
-  height: calc(100vh - 64px); /* adjust for toolbar */
+  height: calc(100vh - 64px); /* full height minus toolbar */
 }
 
 .custom-nav {
@@ -13,11 +13,6 @@
 
 .collapsed-nav.custom-nav {
   width: 64px;
-}
-
-
-:host-context(.collapsed-nav) .nav-link span {
-  display: none;
 }
 
 .content-wrapper {

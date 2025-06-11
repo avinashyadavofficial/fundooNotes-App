@@ -1,7 +1,9 @@
+<!-- Toolbar at the top -->
 <app-toolbar (menuClicked)="toggleSidenav()" (viewModeChange)="onViewModeChange($event)"></app-toolbar>
 
-
+<!-- Side navigation and main content -->
 <mat-sidenav-container class="main-layout" autosize>
+  <!-- Sidenav -->
   <mat-sidenav
     mode="side"
     opened="true"
@@ -13,12 +15,10 @@
     <app-sidenav [collapsed]="sidenavCollapsed"></app-sidenav>
   </mat-sidenav>
 
+  <!-- Routed content -->
   <mat-sidenav-content>
     <div class="content-wrapper">
-      <!-- <app-create-note></app-create-note>
-      <app-display-note [viewMode]="viewMode"></app-display-note> -->
       <router-outlet></router-outlet>
-
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

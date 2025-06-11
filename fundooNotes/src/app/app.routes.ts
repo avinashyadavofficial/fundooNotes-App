@@ -16,8 +16,8 @@ export const routes: Routes = [
     {
       path: 'note',
       loadComponent: () =>
-        import('./components/note/display-note/display-note.component').then(
-          m => m.DisplayNoteComponent
+        import('./components/note/note.component').then(
+          m => m.NoteComponent
         )
     },
     {
@@ -25,6 +25,13 @@ export const routes: Routes = [
       loadComponent: () =>
         import('./components/archive/archive.component').then(
           m => m.ArchiveComponent
+        )
+    },
+    {
+      path: 'trash',
+      loadComponent: () =>
+        import('./components/trash/trash.component').then(
+          m => m.TrashComponent
         )
     }
   ]

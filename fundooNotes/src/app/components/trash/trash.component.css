@@ -1,0 +1,56 @@
+.trash-header {
+  font-size: 14px;
+  color: #5f6368;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.note-card {
+  display: flex;
+  flex-direction: column;
+  height: 180px;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease;
+}
+
+.note-card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.note-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.note-icons-wrapper {
+  margin-top: auto;
+  display: flex;
+  gap: 12px;
+}
+
+.note-icons-wrapper.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.empty-trash {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+  color: #5f6368;
+}
+
+.empty-trash img {
+  width: 120px;
+  opacity: 0.6;
+  margin-bottom: 16px;
+}
+
+.empty-trash p {
+  font-size: 18px;
+}

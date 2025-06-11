@@ -1,28 +1,37 @@
 .note-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  justify-content: space-around;
-  align-items: center;
+  gap: 15px;
+  justify-content: center;
 }
 
 .note-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  justify-content: center;
+  gap: 15px;
   align-items: center;
 }
 
 .note-card {
-  background-color: var(--default-bg, white);
   width: 240px;
   padding: 12px;
   border-radius: 8px;
-  box-shadow: 0 1px 5px rgba(0,0,0,0.2);
-  
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+  word-break: break-word;
+  background-color: var(--default-bg, white);
 }
 
 .note-list .note-card {
-  width: 45%; 
+  width: 100%; 
+}
+
+
+.note-icons-wrapper {
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+.note-icons-wrapper.hidden {
+  opacity: 0;
+  pointer-events: none;
 }

@@ -1,10 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NoteService } from 'src/app/services/note/note.service';
 import { MatCardModule } from '@angular/material/card';
-import { NoteRefreshService } from 'src/app/services/note/note-refresh.service';
-import { NoteIconsComponent } from 'src/app/components/note/note-icons/note-icons.component';
+import { NoteIconsComponent } from '../note-icons/note-icons.component';
 import { MatIconModule } from '@angular/material/icon';
+import { NoteRefreshService } from 'src/app/services/note/note-refresh.service';
 
 @Component({
   selector: 'app-display-note',
@@ -13,9 +13,10 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './display-note.component.html',
   styleUrls: ['./display-note.component.css']
 })
-export class DisplayNoteComponent implements OnInit {
+export class DisplayNoteComponent implements OnInit, OnChanges {
   @Input() viewMode: 'grid' | 'list' = 'grid';
   @Input() showArchivedOnly: boolean = false;
+  @Input() searchText: string = '';
 
   notes: any[] = [];
 
@@ -28,31 +29,29 @@ export class DisplayNoteComponent implements OnInit {
     this.loadNotes();
 
     this.refreshService.refreshNeeded.subscribe(() => {
+      console.log('REFRESH EVENT RECEIVED - reloading notes');
       this.loadNotes();
     });
   }
 
-  loadNotes(): void {
-    if (this.showArchivedOnly) {
-      this.noteService.getArchivedNotes().subscribe({
-        next: (res: any) => {
-          console.log('Archived Notes:', res.data.data);
-          this.notes = res.data.data;
-        },
-        error: (err) => {
-          console.error('Error fetching archived notes:', err);
-        }
-      });
-    } else {
-      this.noteService.getNotes().subscribe({
-        next: (res: any) => {
-          console.log('Notes:', res.data.data);
-          this.notes = res.data.data.filter((note: any) => !note.isArchived && !note.isDeleted);
-        },
-        error: (err) => {
-          console.error('Error fetching notes:', err);
-        }
-      });
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['showArchivedOnly'] || changes['searchText']) {
+      this.loadNotes();
     }
   }
+
+  loadNotes(): void {
+    console.log('Filtered notes:', this.notes);
+
+  this.noteService.getNotes().subscribe({
+    next: (res: any) => {
+      const allNotes = res.data?.data || [];
+      this.notes = allNotes.filter((note: any) => !note.isArchived && !note.isDeleted);
+    },
+    error: (err) => {
+      console.error('Error fetching notes:', err);
+    }
+  });
+}
+
 }
