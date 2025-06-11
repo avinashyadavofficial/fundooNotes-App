@@ -21,9 +21,10 @@
           <mat-icon title="Restore">restore_from_trash</mat-icon>
         </div>
 
-        <div class="icon-button" (click)="deleteNoteForever(note.id)">
-          <mat-icon title="Delete forever">delete_forever</mat-icon>
+        <div class="icon-button" (click)="openDeleteDialog(note.id)">
+          <mat-icon>delete_forever</mat-icon>
         </div>
+
 
       </div>
     
@@ -31,8 +32,8 @@
 </div>
 
 <ng-template #emptyTrash>
-  <div class="empty-trash">
-    <img src="/trash" alt="Empty Trash" />
+  <div class="empty-trashh">
+    <mat-icon class="material-symbols-outlined">delete</mat-icon>
     <p>No notes in Recycle Bin</p>
   </div>
 </ng-template>

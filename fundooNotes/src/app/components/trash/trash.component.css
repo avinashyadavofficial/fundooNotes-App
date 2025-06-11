@@ -45,22 +45,31 @@
   pointer-events:fill;
 }
 
-.empty-trash {
+.empty-trashh {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 100px;
+  margin-top: 150px;
   color: #5f6368;
 }
 
-.empty-trash img {
-  width: 120px;
-  opacity: 0.6;
-  margin-bottom: 16px;
+
+.material-symbols-outlined {
+  font-family: "Material Symbols Outlined";
+  font-size: 20px;
+  color: #b1b6bb;
+  cursor: pointer;
 }
 
-.empty-trash p {
-  font-size: 18px;
+.empty-trashh p {
+  font-size: 25px;
+}
+.empty-trashh mat-icon {
+  font-size: 120px;
+  min-width: 120px;
+  min-height: 120px;
+  color: #dadce0;
+  margin-bottom: 16px;
 }
 .note-grid {
   display: flex;
@@ -74,10 +83,4 @@
   flex-direction: column;
   gap: 10px;
   align-items: center;
-}
-.material-symbols-outlined {
-  font-family: "Material Symbols Outlined";
-  font-size: 20px;
-  color: #101111;
-  cursor: pointer;
 }

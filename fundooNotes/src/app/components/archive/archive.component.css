@@ -9,6 +9,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 500px;
   align-items: center;
 }
 
@@ -26,27 +27,9 @@
 }
 
 .note-list .note-card {
-  width: 80%;
-}
-.empty-archive {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 70vh;
-  color: #5f6368;
-  text-align: center;
+  width: 100%;
 }
 
-.empty-archive img {
-  width: 120px;
-  opacity: 0.6;
-  margin-bottom: 16px;
-}
-
-.empty-archive p {
-  font-size: 18px;
-}
 .note-icons-wrapper {
   margin-top: auto;
   padding-top: 8px;
@@ -55,4 +38,27 @@
 .note-icons-wrapper.hidden {
   opacity: 0;
   pointer-events: none;
+}
+.material-symbols-outlined {
+  font-family: "Material Symbols Outlined";
+  font-size: 20px;
+  color: #b1b6bb;
+  cursor: pointer;
+}
+.empty-archive {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 150px;
+  color: #5f6368;
+}
+.empty-archive p {
+  font-size: 25px;
+}
+.empty-archive mat-icon {
+  font-size: 120px;
+  min-width: 120px;
+  min-height: 120px;
+  color: #dadce0;
+  margin-bottom: 16px;
 }

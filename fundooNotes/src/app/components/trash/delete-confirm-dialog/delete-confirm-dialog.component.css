@@ -1,0 +1,40 @@
+
+.dialog-box {
+    width: 100%;
+    max-width: 600px;
+    min-width: 420px;
+    padding: 24px;
+    box-sizing: border-box;
+    overflow: hidden;
+    height: 113px;
+    
+}
+
+.message {
+    margin: 0;
+    font-size: 15px;
+    color: #202124;
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 24px;
+    gap: 50px !important;
+     
+} 
+
+.cancel {
+  font-weight: 500;
+  color: #202124 !important;
+  background: transparent !important;
+}
+
+.delete {
+    font-weight: 500;
+    color: #1a73e8 !important;
+    background: transparent !important; 
+}
+
+
+

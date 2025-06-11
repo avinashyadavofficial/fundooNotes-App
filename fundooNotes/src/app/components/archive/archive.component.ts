@@ -6,13 +6,14 @@ import { ViewService } from 'src/app/services/view/view.service';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { NoteIconsComponent } from 'src/app/components/note/note-icons/note-icons.component';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-archive',
   standalone: true,
   templateUrl: './archive.component.html',
   styleUrls: ['./archive.component.css'],
-  imports: [CommonModule, MatCardModule, NoteIconsComponent]
+  imports: [CommonModule, MatCardModule, NoteIconsComponent,MatIconModule]
 })
 export class ArchiveComponent implements OnInit, OnDestroy {
   archivedNotes: any[] = [];

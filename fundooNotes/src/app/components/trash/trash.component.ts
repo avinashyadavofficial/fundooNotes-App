@@ -7,7 +7,8 @@ import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteConfirmDialogComponent } from './delete-confirm-dialog/delete-confirm-dialog.component';
 @Component({
   selector: 'app-trash',
   standalone: true,
@@ -24,7 +25,8 @@ export class TrashComponent implements OnInit, OnDestroy {
   constructor(
     private noteService: NoteService,
     private refreshService: NoteRefreshService,
-    private viewService: ViewService
+    private viewService: ViewService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -66,19 +68,22 @@ export class TrashComponent implements OnInit, OnDestroy {
     });
   }
 
-  deleteNoteForever(noteId: string): void {
-    const payload = {
-      noteIdList: [noteId]
-    };
-
-    this.noteService.deleteForever(payload).subscribe({
-      next: () => {
-        this.refreshService.triggerRefresh();
-      },
-      error: (err) => {
-        console.error('Delete forever failed:', err);
+  openDeleteDialog(noteId: string): void {
+    const dialogRef = this.dialog.open(DeleteConfirmDialogComponent, {
+      backdropClass: 'custom-dialog-backdrop', 
+      disableClose: false 
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.noteService.deleteForever({ noteIdList: [noteId] }).subscribe({
+          next: () => this.refreshService.triggerRefresh(),
+          error: err => console.error('Delete failed:', err)
+        });
       }
     });
+  }
+  emptyTrash(): void {
+    console.log('Empty bin clicked');
   }
 
   ngOnDestroy(): void {
