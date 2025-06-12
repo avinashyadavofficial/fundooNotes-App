@@ -1,0 +1,44 @@
+.dialog-card {
+  width: 600px;
+  max-width: 90vw;
+  padding: 16px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  background-color: white;
+}
+
+.note-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.note-title,
+.note-description {
+  width: 100%;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  background: transparent;
+  margin-bottom: 8px;
+}
+
+.note-description {
+  font-size: 14px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.footer-right {
+  font-size: 12px;
+  color: #5f6368;
+}
+
+button {
+  font-weight: 500;
+}

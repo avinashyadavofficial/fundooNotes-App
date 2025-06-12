@@ -1,0 +1,50 @@
+<form [formGroup]="noteForm">
+<mat-card class="dialog-card" [style.background]="note.color || '#fff'" >
+
+  <!-- Title + Pin Row -->
+  <div class="note-header">
+    <input
+      type="text"
+      class="note-title"
+      placeholder="Title"
+      formControlName="title"
+      [style.fontWeight]="note.isPined ? '600' : '500'"
+    />
+  </div>
+
+  <!-- Description -->
+  <textarea
+    formControlName="description"
+    class="note-description"
+    placeholder="Take a note..."
+    cdkTextareaAutosize
+    cdkAutosizeMinRows="3"
+    cdkAutosizeMaxRows="20"
+  ></textarea>
+
+  <!-- Icons + Footer -->
+  <div class="icon-footer">
+    <app-note-icons
+      [note]="note"
+      [showReminder]="true"
+      [showCollaborator]="true"
+      [showColor]="true"
+      [showImage]="true"
+      [showArchive]="true"
+      [showTrash]="true"
+      [showMore]="true"
+      [showUndo]="true"
+      [showRedo]="true"
+    ></app-note-icons>
+
+    <!-- Edited + Save -->
+    <div class="footer">
+      <div class="footer-right">
+        Edited at {{ currentDate | date: 'dd MMM' }}
+      </div>
+      <button mat-button (click)="onSave()">Close</button>
+    </div>
+  </div>
+
+</mat-card>
+</form>
