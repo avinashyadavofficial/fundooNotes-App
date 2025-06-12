@@ -53,8 +53,8 @@ export class TrashComponent implements OnInit, OnDestroy {
         const data=res.data?.data || [];
         this.trashedNotes = data.filter((note:any)=>
       (
-          note.title.toLowerCase().includes(this.searchQuery) ||
-          note.description.toLowerCase().includes(this.searchQuery)
+          note.title?.toLowerCase().includes(this.searchQuery) ||
+          note.description?.toLowerCase().includes(this.searchQuery)
         ));
       },
       error: (err) => {

@@ -53,8 +53,8 @@ export class ArchiveComponent implements OnInit, OnDestroy {
         const filtered = data.filter((note: any) =>
         note.isArchived && !note.isDeleted &&
         (
-          note.title.toLowerCase().includes(this.searchQuery) ||
-          note.description.toLowerCase().includes(this.searchQuery)
+          note.title?.toLowerCase().includes(this.searchQuery) ||
+          note.description?.toLowerCase().includes(this.searchQuery)
         )
       );
         this.archivedNotes = filtered.reverse();

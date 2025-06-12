@@ -32,6 +32,7 @@ export class NoteService {
     return this.http.postApi('notes/changesColorNotes', payload, this.http.getHeader());
   }
 
+
   
   archiveNote(payload: any) {
     return this.http.postApi('notes/archiveNotes', payload, this.http.getHeader());
@@ -50,6 +51,10 @@ export class NoteService {
   pinNote(payload: any) {
     return this.http.postApi('notes/pinUnpinNotes', payload, this.http.getHeader());
   }
+  updateNote(payload: any) {
+    return this.http.postApi('notes/updateNotes', payload, this.http.getHeader());
+  }
+
 
   
   
