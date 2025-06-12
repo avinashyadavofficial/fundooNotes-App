@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteConfirmDialogComponent } from './delete-confirm-dialog/delete-confirm-dialog.component';
+import { RecycleBinComponent } from './recycle-bin/recycle-bin.component';
 @Component({
   selector: 'app-trash',
   standalone: true,
@@ -82,9 +83,27 @@ export class TrashComponent implements OnInit, OnDestroy {
       }
     });
   }
-  emptyTrash(): void {
-    console.log('Empty bin clicked');
-  }
+  emptyRecycleBin(): void {
+  const dialogRef = this.dialog.open(RecycleBinComponent, {
+    panelClass: 'custom-dialog-container'
+  });
+
+  dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+    if (confirmed) {
+      const ids = this.trashedNotes.map(note => note.id);
+      const payload = { noteIdList: ids };
+
+      this.noteService.deleteForever(payload).subscribe({
+        next: () => {
+          this.refreshService.triggerRefresh();
+        },
+        error: (err) => {
+          console.error('Failed to delete notes:', err);
+        }
+      });
+    }
+  });
+}
 
   ngOnDestroy(): void {
     this.refreshSubscription?.unsubscribe();

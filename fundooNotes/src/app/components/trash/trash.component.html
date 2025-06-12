@@ -1,6 +1,6 @@
 <div class="trash-header">
   <span><i>Notes in the Recycle Bin are deleted after 7 days.</i></span>
-  <button>Empty bin</button>
+  <button (click)="emptyRecycleBin()">Empty bin</button>
 </div>
 
 <div *ngIf="trashedNotes.length > 0; else emptyTrash" [ngClass]="viewMode === 'grid' ? 'note-grid' : 'note-list'">
