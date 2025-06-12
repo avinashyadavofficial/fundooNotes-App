@@ -35,3 +35,11 @@
   opacity: 0;
   pointer-events: none;
 }
+.section-heading {
+  font-size: 12px;
+  font-weight: 400;
+  color: #5f6368;
+  margin: 24px 0 8px ;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}

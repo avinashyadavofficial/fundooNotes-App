@@ -24,6 +24,7 @@ export class NoteIconsComponent {
   @Input() showUndo = true;
   @Input() showRedo = true;
   @Input() showUnarchive = false;
+  @Input() showFormatColorText=false;
 
 
   @Output() colorChanged = new EventEmitter<string>();
@@ -96,23 +97,24 @@ export class NoteIconsComponent {
     });
   }
 
-  onPinClick(): void {
-    if (!this.note?.id) return;
+  togglePin(): void {
+  if (!this.note?.id) return;
 
-    const payload = {
-      noteIdList: [this.note.id],
-      isPined: !this.note.isPined 
-    };
+  const payload = {
+    noteIdList: [this.note.id],
+    isPined: !this.note.isPined
+  };
 
-    this.noteService.togglePinNote(payload).subscribe({
-      next: () => {
-        this.refreshService.triggerRefresh();
-      },
-      error: (err) => {
-        console.error('Pin toggle failed:', err);
-      }
-    });
-  }
+  this.noteService.pinNote(payload).subscribe({
+    next: () => {
+      this.refreshService.triggerRefresh();
+    },
+    error: (err) => {
+      console.error('Pin/Unpin failed:', err);
+    }
+  });
+}
+
   onDeleteClick(): void {
   const payload = {
     noteIdList: [this.note?.id],

@@ -29,12 +29,34 @@ export class ToolbarComponent {
   @Output() menuClicked = new EventEmitter<void>();
   @Output() search = new EventEmitter<string>();
   @Output() viewModeChange = new EventEmitter<'grid' | 'list'>();
-  @Input() title: string = 'Keep';
+  title: string = 'Keep';
 
   viewMode: 'grid' | 'list' = 'grid';
   searchText = '';
 
   constructor(private viewService: ViewService, private router: Router) {}
+
+  ngOnInit(): void {
+    this.updateTitleBasedOnRoute();
+
+    this.router.events.subscribe(() => {
+      this.updateTitleBasedOnRoute();
+    });
+  }
+
+  updateTitleBasedOnRoute(): void {
+    const path = this.router.url;
+
+    if (path.includes('/archive')) {
+      this.title = 'Archive';
+    } else if (path.includes('/trash')) {
+      this.title = 'Trash';
+    } else if (path.includes('/reminders')) {
+      this.title = 'Reminders';
+    } else {
+      this.title = 'Keep';
+    }
+  }
 
   onMenuClick(): void {
     this.menuClicked.emit();

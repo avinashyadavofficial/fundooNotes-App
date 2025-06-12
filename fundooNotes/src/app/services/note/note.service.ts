@@ -41,16 +41,19 @@ export class NoteService {
   return this.http.getApi('notes/getTrashNotesList', this.http.getHeader());
   }
 
-  togglePinNote(payload: { noteIdList: string[], isPined: boolean }): Observable<any> {
-    return this.http.postApi('notes/pinUnpinNotes', payload, this.http.getHeader());
-  }
-
   deleteForever(payload: any) {
     return this.http.postApi('notes/deleteForeverNotes', payload, this.http.getHeader());
   }
   trashNote(payload: any) {
     return this.http.postApi('notes/trashNotes', payload, this.http.getHeader());
   }
+  pinNote(payload: any) {
+    return this.http.postApi('notes/pinUnpinNotes', payload, this.http.getHeader());
+  }
+
+  
+  
+
 
 
 

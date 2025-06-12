@@ -7,7 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
+import { HostListener, ElementRef } from '@angular/core';
 import { NoteService } from 'src/app/services/note/note.service';
 import { NoteRefreshService } from 'src/app/services/note/note-refresh.service';
 import { NoteIconsComponent } from '../note-icons/note-icons.component';
@@ -37,7 +37,8 @@ export class CreateNoteComponent {
     private fb: FormBuilder,
     private noteService: NoteService,
     private refreshService: NoteRefreshService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private elementRef: ElementRef
   ) {
     this.noteForm = this.fb.group({
       title: [''],
@@ -56,28 +57,45 @@ export class CreateNoteComponent {
   onClose(): void {
     const { title, description } = this.noteForm.value;
 
-    if (!title.trim() && !description.trim()) {
-      this.resetForm();
-      return;
-    }
+  const trimmedTitle = title?.trim();
+  const trimmedDescription = description?.trim();
 
-    const payload = { title, description, color: this.selectedColor };
+  if (trimmedTitle || trimmedDescription) {
+    const payload = {
+      title: trimmedTitle,
+      description: trimmedDescription,
+      color: this.selectedColor
+    };
 
     this.noteService.createNote(payload).subscribe({
       next: () => {
-        this.snackBar.open('Note created!', 'Close', { duration: 2000 });
         this.refreshService.triggerRefresh();
+        this.snackBar.open('Note created!', 'Close', { duration: 2000 });
         this.resetForm();
       },
-      error: () => {
+      error: (err: any) => {
+        console.error(err);
         this.snackBar.open('Failed to create note', 'Close', { duration: 2000 });
+        this.resetForm(); 
       }
     });
+  } else {
+    this.resetForm(); 
   }
+}
+
 
   private resetForm(): void {
     this.noteForm.reset();
-    this.selectedColor = '#ffffff';
+    this.selectedColor = '#fff';
     this.isExpanded = false;
   }
+  @HostListener('document:click', ['$event.target'])
+onClickOutside(target: HTMLElement): void {
+  const clickedInside = this.elementRef.nativeElement.contains(target);
+  if (!clickedInside && this.isExpanded) {
+    this.onClose();
+  }
+}
+
 }

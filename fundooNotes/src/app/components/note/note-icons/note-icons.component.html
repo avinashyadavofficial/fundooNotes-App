@@ -1,5 +1,8 @@
 <div class="icon-toolbar">
   <div class="icon-button">
+    <mat-icon class="material-symbols-outlined seltoggle" *ngIf="showFormatColorText" title="Formatting options">format_color_text</mat-icon>
+    </div>
+  <div class="icon-button">
     <mat-icon class="material-symbols-outlined seltoggle" *ngIf="showColor" (click)="toggleColorPicker()" title="Background color">
     palette
   </mat-icon>
@@ -67,8 +70,14 @@
   </div>
     <mat-icon class="material-symbols-outlined seltoggle" *ngIf="showUndo" title="Undo">undo</mat-icon>
   <mat-icon class="material-symbols-outlined seltoggle" *ngIf="showRedo" title="Redo">redo</mat-icon>
-  <div class="icon-button">
-    <mat-icon class="pin-icon material-symbols-outlined seltoggle" (click)="onPinClick()" title="Pin">push_pin</mat-icon>
-  </div>
+  <mat-icon
+  class="material-symbols-outlined pin-icon"
+  (click)="togglePin()"
+  [ngClass]="{ 'pinned': note?.isPined }"
+  [title]="note?.isPined ? 'Unpin' : 'Pin'"
+  >
+  push_pin
+  </mat-icon>
+
   
 </div>

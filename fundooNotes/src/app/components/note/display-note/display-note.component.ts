@@ -17,6 +17,8 @@ export class DisplayNoteComponent implements OnInit, OnChanges {
   @Input() viewMode: 'grid' | 'list' = 'grid';
   @Input() showArchivedOnly: boolean = false;
   @Input() searchText: string = '';
+  pinnedNotes: any[] = [];
+  otherNotes: any[] = [];
 
   notes: any[] = [];
 
@@ -46,7 +48,9 @@ export class DisplayNoteComponent implements OnInit, OnChanges {
   this.noteService.getNotes().subscribe({
     next: (res: any) => {
       const allNotes = res.data?.data || [];
-      this.notes = allNotes.filter((note: any) => !note.isArchived && !note.isDeleted).reverse();
+      this.pinnedNotes = allNotes.filter((n:any) => n.isPined && !n.isArchived && !n.isDeleted).reverse();
+      this.otherNotes = allNotes.filter((n:any) => !n.isPined && !n.isArchived && !n.isDeleted).reverse();
+
     },
     error: (err) => {
       console.error('Error fetching notes:', err);
