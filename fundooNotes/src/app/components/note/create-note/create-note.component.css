@@ -1,11 +1,12 @@
 .note-card {
   width: 600px;
   margin: 10px auto;
-  padding: 12px;
+  padding: 2px;
   border-radius: 8px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
   cursor: text;
   transition: background 0.3s ease;
+  
 }
 
 .note-header {
@@ -14,26 +15,49 @@
   align-items: center;
 }
 
-.note-title,
-.note-description {
+.note-title
+ {
   width: 100%;
-  font-size: 16px;
+  padding: 10px;
+  font-size: 19px;
+  font-weight: 545;
   border: none;
   outline: none;
   background: transparent;
   color: #202124;
 }
-
 .note-description {
-  margin: 12px 0;
+  width: 100%;
+  padding: 2px;
+  padding-left: 15px;
+  border: none;
+  outline: none;
+  background: transparent;
   font-size: 14px;
+  color: #202124;
+  font-family: "Google Sans", Roboto, sans-serif;
+  resize: none;
+  overflow: hidden; 
+  line-height: 1.5;
+  margin: 12px 0;
 }
+
+
 
 .note-collapsed {
   display: flex;
   justify-content: space-between;
-  padding: 8px;
+  padding: 2px;
   color: #5f6368;
+  pointer-events: none;
+}
+.note-collapsed span{
+  display: flex;
+  align-self: center;
+}
+.note-collapsed .icon-button,
+.note-collapsed span {
+  pointer-events: auto;
 }
 
 .icon-footer {
@@ -46,7 +70,7 @@
 .collapsed-icons {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 30px;
 }
 
 .material-symbols-outlined {
@@ -54,4 +78,23 @@
   font-size: 25px;
   color: #5f6368;
   cursor: pointer;
+}
+.icon-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  transition: background-color 0.2s ease;
+}
+
+.icon-button:hover {
+  background-color: rgba(60, 64, 67, 0.1); 
+  cursor: pointer;
+}
+
+.icon-button mat-icon {
+  font-size: 25px;
+  color: #5f6368;
 }

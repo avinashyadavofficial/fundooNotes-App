@@ -11,6 +11,7 @@ import { HostListener, ElementRef } from '@angular/core';
 import { NoteService } from 'src/app/services/note/note.service';
 import { NoteRefreshService } from 'src/app/services/note/note-refresh.service';
 import { NoteIconsComponent } from '../note-icons/note-icons.component';
+import { TextFieldModule } from '@angular/cdk/text-field';
 
 @Component({
   selector: 'app-create-note',
@@ -23,7 +24,8 @@ import { NoteIconsComponent } from '../note-icons/note-icons.component';
     MatIconModule,
     MatCardModule,
     MatButtonModule,
-    NoteIconsComponent
+    NoteIconsComponent,
+    TextFieldModule
   ],
   templateUrl: './create-note.component.html',
   styleUrls: ['./create-note.component.css']

@@ -39,7 +39,14 @@
   font-size: 12px;
   font-weight: 400;
   color: #5f6368;
-  margin: 24px 0 8px ;
+  margin: 40px 0 8px ;
   letter-spacing: 0.5px;
   text-transform: uppercase;
+}
+pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 14px;
+  margin: 0;
 }

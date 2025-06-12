@@ -28,8 +28,8 @@
 
   
   <div class="icon-container">
-    <div class="icon-button">
-      <mat-icon class="material-symbols-outlined">refresh</mat-icon>
+    <div class="icon-button" (click)="triggerManualRefresh()" title="Refresh">
+      <mat-icon class="material-symbols-outlined" [ngClass]="{ 'refresh-animating': refreshing }">refresh</mat-icon>
     </div>
 
     <div class="icon-button" (click)="toggleViewMode()" title="Toggle view">

@@ -41,8 +41,8 @@
       (mouseenter)="note.showIcons = true"
       (mouseleave)="note.showIcons = false"
     >
-      <h3>{{ note.title }}</h3>
-      <p>{{ note.description }}</p>
+      <h3 > {{ note.title }}</h3>
+      <pre>{{ note.description }}</pre>
 
       <div [class.hidden]="!note.showIcons" class="note-icons-wrapper">
         <app-note-icons

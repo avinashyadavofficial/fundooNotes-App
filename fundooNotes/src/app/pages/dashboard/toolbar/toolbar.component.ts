@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router';
 import { ViewService } from 'src/app/services/view/view.service';
+import { NoteRefreshService } from 'src/app/services/note/note-refresh.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -30,11 +31,15 @@ export class ToolbarComponent {
   @Output() search = new EventEmitter<string>();
   @Output() viewModeChange = new EventEmitter<'grid' | 'list'>();
   title: string = 'Keep';
-
+  refreshing = false;
   viewMode: 'grid' | 'list' = 'grid';
   searchText = '';
 
-  constructor(private viewService: ViewService, private router: Router) {}
+  constructor(
+    private viewService: ViewService, 
+    private router: Router,
+    private refreshService: NoteRefreshService
+  ) {}
 
   ngOnInit(): void {
     this.updateTitleBasedOnRoute();
@@ -73,4 +78,13 @@ export class ToolbarComponent {
     const current = this.router.url;
     this.title = current.includes('/archive') ? 'Archive' : 'Keep';
   }
+  
+
+triggerManualRefresh(): void {
+  this.refreshing = true;
+  this.refreshService.triggerRefresh();
+
+  setTimeout(() => this.refreshing = false, 500); // stop spin
+}
+
 }

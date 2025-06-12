@@ -1,6 +1,6 @@
 <mat-card
   class="note-card"
-  (click)="onFocus()"
+  (click)="!isExpanded && onFocus()"
   [style.background]="selectedColor"
 >
   <form [formGroup]="noteForm" *ngIf="isExpanded">
@@ -9,17 +9,20 @@
         matInput
         formControlName="title"
         placeholder="Title"
-        class="note-title"
+        class="note-title"  
       />
 
     </div>
 
-    <input
-      matInput
-      formControlName="description"
-      placeholder="Take a note..."
-      class="note-description"
-    />
+    <textarea
+  matInput
+  formControlName="description"
+  placeholder="Take a note..."
+  class="note-description"
+  cdkTextareaAutosize
+  cdkAutosizeMinRows="1"
+  cdkAutosizeMaxRows="20"
+></textarea>
 
     <div class="icon-footer">
       <app-note-icons
@@ -42,11 +45,18 @@
   </form>
 
   <div *ngIf="!isExpanded" class="note-collapsed">
+    
     <span>Take a note...</span>
     <div class="collapsed-icons">
-      <mat-icon>check_box</mat-icon>
-      <mat-icon>brush</mat-icon>
-      <mat-icon>image</mat-icon>
+      <div class="icon-button">
+        <mat-icon class="material-symbols-outlined seltoggle">check_box</mat-icon>
+      </div>
+       <div class="icon-button">
+         <mat-icon class="material-symbols-outlined seltoggle">brush</mat-icon>
+       </div>
+      <div class="icon-button">
+         <mat-icon class="material-symbols-outlined seltoggle">image</mat-icon>
+      </div> 
     </div>
   </div>
 </mat-card>
