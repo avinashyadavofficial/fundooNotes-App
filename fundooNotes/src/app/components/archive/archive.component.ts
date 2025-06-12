@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { NoteIconsComponent } from 'src/app/components/note/note-icons/note-icons.component';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
+import { SearchService } from 'src/app/services/search.service';
 
 @Component({
   selector: 'app-archive',
@@ -18,17 +19,23 @@ import { MatIcon, MatIconModule } from '@angular/material/icon';
 export class ArchiveComponent implements OnInit, OnDestroy {
   archivedNotes: any[] = [];
   viewMode: 'grid' | 'list' = 'grid';
+  searchQuery:string='';
 
   private refreshSubscription!: Subscription;
 
   constructor(
     private noteService: NoteService,
     private refreshService: NoteRefreshService,
-    private viewService: ViewService
+    private viewService: ViewService,
+    private searchService:SearchService
   ) {}
 
   ngOnInit(): void {
     this.loadArchivedNotes();
+    this.searchService.getSearchQuery().subscribe(query => {
+      this.searchQuery = query;
+      this.loadArchivedNotes(); 
+    });
 
     this.refreshSubscription = this.refreshService.refreshNeeded.subscribe(() => {
       this.loadArchivedNotes();
@@ -43,7 +50,14 @@ export class ArchiveComponent implements OnInit, OnDestroy {
     this.noteService.getArchivedNotes().subscribe({
       next: (res: any) => {
         const data = res.data?.data || [];
-        this.archivedNotes = data.filter((note: any) => note.isArchived && !note.isDeleted).reverse();
+        const filtered = data.filter((note: any) =>
+        note.isArchived && !note.isDeleted &&
+        (
+          note.title.toLowerCase().includes(this.searchQuery) ||
+          note.description.toLowerCase().includes(this.searchQuery)
+        )
+      );
+        this.archivedNotes = filtered.reverse();
       },
       error: (err) => {
         console.error('Failed to load archived notes:', err);

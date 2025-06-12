@@ -1,9 +1,9 @@
-
+<div class="display-div">
 <div *ngIf="pinnedNotes.length > 0">
   <h5 class="section-heading">PINNED</h5>
   <div [ngClass]="viewMode === 'grid' ? 'note-grid' : 'note-list'">
     <mat-card
-      *ngFor="let note of pinnedNotes"
+      *ngFor="let note of pinnedNotes; trackBy: trackByNoteId"
       class="note-card"
       [style.background]="note.color || '#fff'"
       (mouseenter)="note.showIcons = true"
@@ -60,4 +60,5 @@
       </div>
     </mat-card>
   </div>
+</div>
 </div>

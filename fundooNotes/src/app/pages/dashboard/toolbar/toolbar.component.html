@@ -20,7 +20,7 @@
     <input
       matInput
       [(ngModel)]="searchText"
-      (ngModelChange)="search.emit(searchText)"
+      (ngModelChange)="onSearchChange()"
       placeholder="Search"
       class="search-input"
     />

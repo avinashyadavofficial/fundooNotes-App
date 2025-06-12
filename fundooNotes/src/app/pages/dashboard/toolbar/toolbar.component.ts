@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router';
 import { ViewService } from 'src/app/services/view/view.service';
 import { NoteRefreshService } from 'src/app/services/note/note-refresh.service';
+import { SearchService } from 'src/app/services/search.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -38,7 +39,8 @@ export class ToolbarComponent {
   constructor(
     private viewService: ViewService, 
     private router: Router,
-    private refreshService: NoteRefreshService
+    private refreshService: NoteRefreshService,
+    private searchService: SearchService  
   ) {}
 
   ngOnInit(): void {
@@ -86,5 +88,8 @@ triggerManualRefresh(): void {
 
   setTimeout(() => this.refreshing = false, 500); // stop spin
 }
+  onSearchChange(): void {
+  this.searchService.setSearchQuery(this.searchText);
+  }
 
 }

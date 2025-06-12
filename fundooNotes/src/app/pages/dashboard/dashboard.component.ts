@@ -6,7 +6,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { CreateNoteComponent } from '../../components/note/create-note/create-note.component';
 import { DisplayNoteComponent } from '../../components/note/display-note/display-note.component';
 import { RouterOutlet } from '@angular/router';
-
+import { SearchService } from 'src/app/services/search.service';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -23,9 +23,11 @@ import { RouterOutlet } from '@angular/router';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
+  constructor(private searchService: SearchService) {}
   isCollapsed = true;
   isHovering = false;
   viewMode: 'grid' | 'list' = 'grid';
+  searchQuery: string = '';
 
   toggleSidenav(): void {
     this.isCollapsed = !this.isCollapsed;
@@ -46,4 +48,8 @@ export class DashboardComponent {
   onViewModeChange(mode: 'grid' | 'list'): void {
     this.viewMode = mode;
   }
+  
+onSearchInput(query: string): void {
+  this.searchService.setSearchQuery(query);
+}
 }

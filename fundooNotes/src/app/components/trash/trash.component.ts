@@ -10,6 +10,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteConfirmDialogComponent } from './delete-confirm-dialog/delete-confirm-dialog.component';
 import { RecycleBinComponent } from './recycle-bin/recycle-bin.component';
+import { SearchService } from 'src/app/services/search.service';
 @Component({
   selector: 'app-trash',
   standalone: true,
@@ -20,19 +21,23 @@ import { RecycleBinComponent } from './recycle-bin/recycle-bin.component';
 export class TrashComponent implements OnInit, OnDestroy {
   trashedNotes: any[] = [];
   viewMode: 'grid' | 'list' = 'grid';
-
+  searchQuery:string='';
   private refreshSubscription!: Subscription;
 
   constructor(
     private noteService: NoteService,
     private refreshService: NoteRefreshService,
     private viewService: ViewService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private searchService:SearchService
   ) {}
 
   ngOnInit(): void {
     this.loadTrashedNotes();
-
+    this.searchService.getSearchQuery().subscribe(query => {
+      this.searchQuery = query;
+      this.loadTrashedNotes(); 
+    });
     this.refreshSubscription = this.refreshService.refreshNeeded.subscribe(() => {
       this.loadTrashedNotes();
     });
@@ -45,7 +50,12 @@ export class TrashComponent implements OnInit, OnDestroy {
   loadTrashedNotes(): void {
     this.noteService.getTrashedNotes().subscribe({
       next: (res: any) => {
-        this.trashedNotes = res.data?.data || [];
+        const data=res.data?.data || [];
+        this.trashedNotes = data.filter((note:any)=>
+      (
+          note.title.toLowerCase().includes(this.searchQuery) ||
+          note.description.toLowerCase().includes(this.searchQuery)
+        ));
       },
       error: (err) => {
         console.error('Failed to load trashed notes:', err);

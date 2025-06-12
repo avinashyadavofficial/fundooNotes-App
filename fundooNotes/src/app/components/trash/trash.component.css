@@ -75,12 +75,19 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  justify-content: center;
+  justify-content: start;
+  align-items: flex-start;
+  padding-left: 10%;
+  padding-top: 1.5%;
+
 }
 
 .note-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
+  width: 500px;
   align-items: center;
+  padding-left: 30%;
+  padding-top: 1.5%;
 }

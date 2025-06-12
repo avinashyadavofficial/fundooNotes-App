@@ -5,7 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { NoteIconsComponent } from '../note-icons/note-icons.component';
 import { MatIconModule } from '@angular/material/icon';
 import { NoteRefreshService } from 'src/app/services/note/note-refresh.service';
-
+import { SearchService } from 'src/app/services/search.service';
 @Component({
   selector: 'app-display-note',
   standalone: true,
@@ -19,19 +19,24 @@ export class DisplayNoteComponent implements OnInit, OnChanges {
   @Input() searchText: string = '';
   pinnedNotes: any[] = [];
   otherNotes: any[] = [];
-
+  searchQuery: string = '';
   notes: any[] = [];
 
   constructor(
     private noteService: NoteService,
-    private refreshService: NoteRefreshService
+    private refreshService: NoteRefreshService,
+    private searchService: SearchService
   ) {}
 
   ngOnInit(): void {
     this.loadNotes();
 
+     this.searchService.getSearchQuery().subscribe(query => {
+    this.searchQuery = query;
+    this.loadNotes(); 
+  });
+
     this.refreshService.refreshNeeded.subscribe(() => {
-      console.log('REFRESH EVENT RECEIVED - reloading notes');
       this.loadNotes();
     });
   }
@@ -41,16 +46,25 @@ export class DisplayNoteComponent implements OnInit, OnChanges {
       this.loadNotes();
     }
   }
+  trackByNoteId(index: number, note: any): string {
+  return note.id;
+}
 
   loadNotes(): void {
-    console.log('Filtered notes:', this.notes);
 
   this.noteService.getNotes().subscribe({
     next: (res: any) => {
       const allNotes = res.data?.data || [];
-      this.pinnedNotes = allNotes.filter((n:any) => n.isPined && !n.isArchived && !n.isDeleted).reverse();
-      this.otherNotes = allNotes.filter((n:any) => !n.isPined && !n.isArchived && !n.isDeleted).reverse();
-
+      
+      const filtered = allNotes.filter((note: any) =>
+        !note.isArchived && !note.isDeleted &&
+        (
+          note.title.toLowerCase().includes(this.searchQuery) ||
+          note.description.toLowerCase().includes(this.searchQuery)
+        )
+      );
+      this.pinnedNotes = filtered.filter((n:any) => n.isPined).reverse(); 
+      this.otherNotes = filtered.filter((n:any) => !n.isPined).reverse(); 
     },
     error: (err) => {
       console.error('Error fetching notes:', err);
