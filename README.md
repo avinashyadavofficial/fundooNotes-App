@@ -1,4 +1,4 @@
-#  FundooNotes – Google Keep Clone (Angular)
+#  FundooNotes Application
 
 FundooNotes is a **Google Keep-inspired note-taking web application** built using **Angular** with a modular and component-based architecture.
 
