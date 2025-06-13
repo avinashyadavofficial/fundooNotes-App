@@ -78,7 +78,6 @@ export class DisplayNoteComponent implements OnInit, OnChanges {
   openEditDialog(note: any): void {
   const dialogRef = this.dialog.open(EditNoteDialogComponent, {
     data: note,
-    width: '600px',
     backdropClass: 'dialog-backdrop',
     panelClass: 'edit-dialog-panel'
   });

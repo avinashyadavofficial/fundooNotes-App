@@ -1,28 +1,25 @@
 <form [formGroup]="noteForm">
 <mat-card class="dialog-card" [style.background]="note.color || '#fff'" >
 
-  <!-- Title + Pin Row -->
   <div class="note-header">
     <input
       type="text"
       class="note-title"
       placeholder="Title"
       formControlName="title"
-      [style.fontWeight]="note.isPined ? '600' : '500'"
     />
   </div>
 
-  <!-- Description -->
-  <textarea
-    formControlName="description"
-    class="note-description"
-    placeholder="Take a note..."
-    cdkTextareaAutosize
-    cdkAutosizeMinRows="3"
-    cdkAutosizeMaxRows="20"
-  ></textarea>
+ <textarea
+  #autosize="cdkTextareaAutosize"
+  cdkTextareaAutosize
+  cdkAutosizeMinRows="3"
+  cdkAutosizeMaxRows="20"
+  formControlName="description"
+  class="note-description"
+  placeholder="Take a note..."
+></textarea>
 
-  <!-- Icons + Footer -->
   <div class="icon-footer">
     <app-note-icons
       [note]="note"
@@ -35,9 +32,10 @@
       [showMore]="true"
       [showUndo]="true"
       [showRedo]="true"
+      [showFormatColorText]="true"
     ></app-note-icons>
 
-    <!-- Edited + Save -->
+
     <div class="footer">
       <div class="footer-right">
         Edited at {{ currentDate | date: 'dd MMM' }}

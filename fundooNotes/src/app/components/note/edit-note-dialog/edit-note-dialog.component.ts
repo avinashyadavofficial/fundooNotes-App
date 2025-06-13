@@ -1,13 +1,22 @@
-import { Component, Inject, OnDestroy } from '@angular/core';
+import {
+  Component,
+  Inject,
+  OnDestroy,
+  AfterViewInit,
+  NgZone,
+  ViewChild
+} from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { CdkTextareaAutosize, TextFieldModule } from '@angular/cdk/text-field';
+
 import { NoteService } from 'src/app/services/note/note.service';
-import { NoteIconsComponent } from '../note-icons/note-icons.component'; 
-import { MatCardModule} from '@angular/material/card';
-import { ReactiveFormsModule } from '@angular/forms';
+import { NoteIconsComponent } from '../note-icons/note-icons.component';
+
 @Component({
   selector: 'app-edit-note-dialog',
   standalone: true,
@@ -15,26 +24,43 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     MatButtonModule,
     MatIconModule,
-    NoteIconsComponent,
     MatCardModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TextFieldModule,
+    NoteIconsComponent
   ],
   templateUrl: './edit-note-dialog.component.html',
   styleUrls: ['./edit-note-dialog.component.css']
 })
-export class EditNoteDialogComponent implements OnDestroy {
+export class EditNoteDialogComponent implements AfterViewInit, OnDestroy {
   noteForm: FormGroup;
   currentDate = new Date();
   private isSaved = false;
+
+  @ViewChild('autosize') autosize!: CdkTextareaAutosize;
+
   constructor(
     private fb: FormBuilder,
     private noteService: NoteService,
     private dialogRef: MatDialogRef<EditNoteDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public note: any
+    @Inject(MAT_DIALOG_DATA) public note: any,
+    private ngZone: NgZone
   ) {
     this.noteForm = this.fb.group({
       title: [note.title],
       description: [note.description]
+    });
+  }
+
+  ngAfterViewInit(): void {
+    this.ngZone.onStable.pipe().subscribe(() => {
+      this.autosize?.resizeToFitContent(true);
+    });
+
+    this.noteForm.get('description')?.valueChanges.subscribe(() => {
+      setTimeout(() => {
+        this.autosize?.resizeToFitContent(true);
+      }, 0);
     });
   }
 
@@ -56,6 +82,7 @@ export class EditNoteDialogComponent implements OnDestroy {
       }
     });
   }
+
   ngOnDestroy(): void {
     if (!this.isSaved) {
       const updatedNote = {
@@ -63,8 +90,7 @@ export class EditNoteDialogComponent implements OnDestroy {
         title: this.noteForm.value.title,
         description: this.noteForm.value.description
       };
-
-      this.noteService.updateNote(updatedNote).subscribe(); // auto-save if not already saved
+      this.noteService.updateNote(updatedNote).subscribe(); // auto-save on close
     }
   }
 
