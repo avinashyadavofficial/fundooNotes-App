@@ -34,13 +34,14 @@ export class CreateNoteComponent {
   isExpanded = false;
   selectedColor = '#ffffff';
   noteForm: FormGroup;
-
+  selectedReminder: string | null = null;
+  private clickStartedInside = false;
   constructor(
     private fb: FormBuilder,
     private noteService: NoteService,
     private refreshService: NoteRefreshService,
     private snackBar: MatSnackBar,
-    private elementRef: ElementRef
+    private elementRef: ElementRef,
   ) {
     this.noteForm = this.fb.group({
       title: [''],
@@ -92,12 +93,19 @@ export class CreateNoteComponent {
     this.selectedColor = '#fff';
     this.isExpanded = false;
   }
-  @HostListener('document:click', ['$event.target'])
-onClickOutside(target: HTMLElement): void {
-  const clickedInside = this.elementRef.nativeElement.contains(target);
-  if (!clickedInside && this.isExpanded) {
+  @HostListener('mousedown', ['$event.target'])
+onMouseDown(target: HTMLElement): void {
+  this.clickStartedInside = this.elementRef.nativeElement.contains(target);
+}
+@HostListener('document:click')
+onClickDocument(): void {
+  if (!this.clickStartedInside && this.isExpanded) {
     this.onClose();
   }
+  this.clickStartedInside = false; // reset for next click
+}
+onReminderSet(date: string) {
+  this.selectedReminder = date;
 }
 
 }

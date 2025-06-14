@@ -1,18 +1,16 @@
 .main-layout {
   flex-grow: 1;
-  height: calc(100vh - 64px); /* full height minus toolbar */
+  height: calc(100vh - 60px); 
 }
 
 .custom-nav {
   width: 220px;
-  transition: width 0.2s ease;
-  border-right: 1px solid #e0e0e0;
   overflow: hidden;
   padding-top: 8px;
 }
 
 .collapsed-nav.custom-nav {
-  width: 64px;
+  width: 60px;
 }
 
 

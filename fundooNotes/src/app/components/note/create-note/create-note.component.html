@@ -1,4 +1,5 @@
 <mat-card
+  #noteCard
   class="note-card"
   (click)="!isExpanded && onFocus()"
   [style.background]="selectedColor"
@@ -26,6 +27,7 @@
 
     <div class="icon-footer">
       <app-note-icons
+        (reminderSet)="onReminderSet($event)"
         [note]="{ id: '', color: selectedColor }"
         (colorChanged)="onColorChanged($event)"
         [showReminder]="true"

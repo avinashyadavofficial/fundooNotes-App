@@ -4,11 +4,28 @@ import { MatIconModule } from '@angular/material/icon';
 import { NoteService } from 'src/app/services/note/note.service';
 import { NoteRefreshService } from 'src/app/services/note/note-refresh.service';
 import { MatMenuModule } from '@angular/material/menu';
-
+import { MatDividerModule } from '@angular/material/divider';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-note-icons',
   standalone: true,
-  imports: [CommonModule, MatIconModule,MatMenuModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatDividerModule
+  ],
   templateUrl: './note-icons.component.html',
   styleUrls: ['./note-icons.component.css']
 })
@@ -25,9 +42,10 @@ export class NoteIconsComponent {
   @Input() showRedo = true;
   @Input() showUnarchive = false;
   @Input() showFormatColorText=false;
-
-
+  @Output() reminderSet = new EventEmitter<string>();
   @Output() colorChanged = new EventEmitter<string>();
+  customDate: Date | null = null;
+  customTime: string = '';
 
   colors: string[] = [
     '#ffffff', '#f28b82', '#fbbc04', '#fff475',
@@ -130,9 +148,54 @@ export class NoteIconsComponent {
     }
   });
 }
- 
+setReminder(option: 'laterToday' | 'tomorrow' | 'nextWeek') {
+    const now = new Date();
+    let reminder: Date;
 
+    switch (option) {
+      case 'laterToday':
+        reminder = new Date(now.setDate(now.getDate()));
+        reminder.setHours(20, 0, 0, 0);
+        break;
+      case 'tomorrow':
+        reminder = new Date(now.setDate(now.getDate() + 1));
+        reminder.setHours(8, 0, 0, 0);
+        break;
+      case 'nextWeek':
+        reminder = new Date(now.setDate(now.getDate() + (8 - now.getDay())));
+        reminder.setHours(8, 0, 0, 0);
+        break;
+    }
 
+    this.saveReminder([reminder.toISOString()]);
+  }
+
+  confirmCustomReminder() {
+    if (this.customDate && this.customTime) {
+      const [hours, minutes] = this.customTime.split(':').map(Number);
+      const reminder = new Date(this.customDate);
+      reminder.setHours(hours, minutes, 0, 0);
+      this.saveReminder([reminder.toISOString()]);
+    }
+  }
+
+  saveReminder(reminderArray: string[]) {
+  const payload = {
+    noteIdList: [this.note.id],
+    reminder: reminderArray
+  };
+  
+
+  this.noteService.addUpdateReminderNotes(payload.noteIdList, payload.reminder).subscribe({
+    next: () => {
+      console.log('Reminder saved successfully');
+    },
+    error: err => {
+      console.error('Reminder failed', err);
+    }
+  });
+}
+  
 
 
 }

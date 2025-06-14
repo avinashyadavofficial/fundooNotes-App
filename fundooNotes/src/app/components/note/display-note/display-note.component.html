@@ -1,6 +1,5 @@
 <div class="display-div">
 
-  <!-- 🔷 PINNED NOTES -->
   <div *ngIf="pinnedNotes.length > 0">
     <h5 class="section-heading">PINNED</h5>
     <div [ngClass]="viewMode === 'grid' ? 'note-grid' : 'note-list'">
@@ -11,20 +10,20 @@
         (mouseenter)="note.showIcons = true"
         (mouseleave)="note.showIcons = false"
       >
-        <!-- ✅ Only this div opens popup -->
+  
         <div class="note-body" (click)="openEditDialog(note)">
           <h3>{{ note.title }}</h3>
           <p>{{ note.description }}</p>
         </div>
 
-        <!-- ❌ Prevent click propagation from icons -->
+      
         <div
           [class.hidden]="!note.showIcons"
           class="note-icons-wrapper"
           (click)="$event.stopPropagation()"
         >
           <app-note-icons
-            [note]="note"
+            [note]="note" 
             [showReminder]="true"
             [showCollaborator]="true"
             [showColor]="true"
@@ -40,7 +39,7 @@
     </div>
   </div>
 
-  <!-- 🔶 OTHER NOTES -->
+
   <div *ngIf="otherNotes.length > 0">
     <h5 class="section-heading" *ngIf="pinnedNotes.length > 0">OTHERS</h5>
     <div [ngClass]="viewMode === 'grid' ? 'note-grid' : 'note-list'">
@@ -51,13 +50,13 @@
         (mouseenter)="note.showIcons = true"
         (mouseleave)="note.showIcons = false"
       >
-        <!-- ✅ Only title+desc are clickable -->
+       
         <div class="note-body" (click)="openEditDialog(note)">
           <h3>{{ note.title }}</h3>
           <pre>{{ note.description }}</pre>
         </div>
 
-        <!-- ❌ Prevent click propagation from icons -->
+        
         <div
           [class.hidden]="!note.showIcons"
           class="note-icons-wrapper"

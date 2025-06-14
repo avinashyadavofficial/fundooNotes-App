@@ -34,26 +34,40 @@ export class NoteService {
 
 
   
-  archiveNote(payload: any) {
+  archiveNote(payload: any):Observable<any> {
     return this.http.postApi('notes/archiveNotes', payload, this.http.getHeader());
   }
 
-  getTrashedNotes() {
+  getTrashedNotes():Observable<any> {
   return this.http.getApi('notes/getTrashNotesList', this.http.getHeader());
   }
 
-  deleteForever(payload: any) {
+  deleteForever(payload: any) :Observable<any>{
     return this.http.postApi('notes/deleteForeverNotes', payload, this.http.getHeader());
   }
-  trashNote(payload: any) {
+  trashNote(payload: any) :Observable<any>{
     return this.http.postApi('notes/trashNotes', payload, this.http.getHeader());
   }
-  pinNote(payload: any) {
+  pinNote(payload: any):Observable<any>{
     return this.http.postApi('notes/pinUnpinNotes', payload, this.http.getHeader());
   }
-  updateNote(payload: any) {
+  updateNote(payload: any):Observable<any> {
     return this.http.postApi('notes/updateNotes', payload, this.http.getHeader());
   }
+  addUpdateReminderNotes(noteIdList: string[], reminder: string[]):Observable<any> {
+    const payload = {
+      noteIdList,
+      reminder
+    };
+    return this.http.postApi('notes/addUpdateReminderNotes', payload, this.http.getHeader());
+  }
+  getReminderNotes():Observable<any>{
+    return this.http.getApi('notes/getReminderNotesList', this.http.getHeader());
+  }
+  removeReminder(noteIdList: string[]) {
+  const payload = { noteIdList };
+  return this.http.postApi('notes/removeReminderNotes', payload, this.http.getHeader());
+}
 
 
   

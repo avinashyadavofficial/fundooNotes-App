@@ -4,8 +4,8 @@
     *ngFor="let note of archivedNotes"
     class="note-card"
     [style.background]="note.color || '#fff'"
-    (mouseenter)="note.showIcons = true"
-    (mouseleave)="note.showIcons = false"
+      (mouseenter)="note.showIcons = true"
+      (mouseleave)="note.showIcons = false"
   >
     <h3>{{ note.title }}</h3>
     <p>{{ note.description }}</p>

@@ -53,4 +53,9 @@
 .pin-icon.pinned {
   font-variation-settings: 'FILL' 1;
 }
+.reminder-menu-panel .time-label {
+  margin-left: auto;
+  color: #5f6368;
+  font-size: 12px;
+}
 

@@ -91,7 +91,7 @@ export class RegistrationComponent {
       horizontalPosition: 'center',
       verticalPosition: 'top',
     });
-    this.router.navigate(['/login']);
+    this.router.navigate(['']);
   },
   error: (err) => {
     console.error('Registration error:', err);

@@ -14,9 +14,43 @@
     <div *ngFor="let color of colors" class="color-circle" [style.background]="color" (click)="selectColor(color)"></div>
   </div>
 
-  <div class="icon-button">
-    <mat-icon class="material-symbols-outlined seltoggle" *ngIf="showReminder" title="Remind me">notifications</mat-icon>
+ <mat-menu #reminderMenu="matMenu" class="reminder-menu-panel">
+  <button mat-menu-item (click)="setReminder('laterToday')">
+    Later today <span class="time-label">8:00 PM</span>
+  </button>
+  <button mat-menu-item (click)="setReminder('tomorrow')">
+    Tomorrow <span class="time-label">8:00 AM</span>
+  </button>
+  <button mat-menu-item (click)="setReminder('nextWeek')">
+    Next week <span class="time-label">Mon, 8:00 AM</span>
+  </button>
+  <mat-divider></mat-divider>
+
+  <div class="custom-reminder" style="padding: 10px; width: 230px;">
+    <mat-form-field appearance="outline" class="date-field" style="width: 100%;">
+      <mat-label>Select date</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="customDate">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <input type="time" [(ngModel)]="customTime" class="time-field" style="width: 100%; margin: 8px 0;" />
+
+    <button mat-button color="primary" (click)="confirmCustomReminder()">Save</button>
   </div>
+</mat-menu>
+
+<div class="icon-button">
+  <mat-icon
+    class="material-symbols-outlined seltoggle"
+    *ngIf="showReminder"
+    title="Remind me"
+    [matMenuTriggerFor]="reminderMenu"
+  >
+    notifications
+  </mat-icon>
+</div>
+
   <div class="icon-button">
      <mat-icon class="material-symbols-outlined seltoggle" *ngIf="showCollaborator" title="Collaborator">person_add</mat-icon>
   </div>
