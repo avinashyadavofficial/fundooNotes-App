@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -31,16 +31,17 @@ export class ToolbarComponent {
   @Output() menuClicked = new EventEmitter<void>();
   @Output() search = new EventEmitter<string>();
   @Output() viewModeChange = new EventEmitter<'grid' | 'list'>();
+
   title: string = 'Keep';
   refreshing = false;
   viewMode: 'grid' | 'list' = 'grid';
   searchText = '';
 
   constructor(
-    private viewService: ViewService, 
+    private viewService: ViewService,
     private router: Router,
     private refreshService: NoteRefreshService,
-    private searchService: SearchService  
+    private searchService: SearchService
   ) {}
 
   ngOnInit(): void {
@@ -75,21 +76,18 @@ export class ToolbarComponent {
     this.viewModeChange.emit(this.viewMode);
   }
 
-  
   updateTitleFromRoute(): void {
     const current = this.router.url;
     this.title = current.includes('/archive') ? 'Archive' : 'Keep';
   }
-  
 
-triggerManualRefresh(): void {
-  this.refreshing = true;
-  this.refreshService.triggerRefresh();
-
-  setTimeout(() => this.refreshing = false, 500); // stop spin
-}
-  onSearchChange(): void {
-  this.searchService.setSearchQuery(this.searchText);
+  triggerManualRefresh(): void {
+    this.refreshing = true;
+    this.refreshService.triggerRefresh();
+    setTimeout(() => (this.refreshing = false), 500);
   }
 
+  onSearchChange(): void {
+    this.searchService.setSearchQuery(this.searchText);
+  }
 }

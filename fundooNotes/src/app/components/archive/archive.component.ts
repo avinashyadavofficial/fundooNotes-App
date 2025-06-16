@@ -6,7 +6,7 @@ import { ViewService } from 'src/app/services/view/view.service';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { NoteIconsComponent } from 'src/app/components/note/note-icons/note-icons.component';
-import { MatIcon, MatIconModule } from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { SearchService } from 'src/app/services/search.service';
 
 @Component({
@@ -14,27 +14,27 @@ import { SearchService } from 'src/app/services/search.service';
   standalone: true,
   templateUrl: './archive.component.html',
   styleUrls: ['./archive.component.css'],
-  imports: [CommonModule, MatCardModule, NoteIconsComponent,MatIconModule]
+  imports: [CommonModule, MatCardModule, NoteIconsComponent, MatIconModule]
 })
 export class ArchiveComponent implements OnInit, OnDestroy {
   archivedNotes: any[] = [];
   viewMode: 'grid' | 'list' = 'grid';
-  searchQuery:string='';
-
+  searchQuery: string = '';
   private refreshSubscription!: Subscription;
 
   constructor(
     private noteService: NoteService,
     private refreshService: NoteRefreshService,
     private viewService: ViewService,
-    private searchService:SearchService
+    private searchService: SearchService
   ) {}
 
   ngOnInit(): void {
     this.loadArchivedNotes();
+
     this.searchService.getSearchQuery().subscribe(query => {
       this.searchQuery = query;
-      this.loadArchivedNotes(); 
+      this.loadArchivedNotes();
     });
 
     this.refreshSubscription = this.refreshService.refreshNeeded.subscribe(() => {
@@ -51,12 +51,13 @@ export class ArchiveComponent implements OnInit, OnDestroy {
       next: (res: any) => {
         const data = res.data?.data || [];
         const filtered = data.filter((note: any) =>
-        note.isArchived && !note.isDeleted &&
-        (
-          note.title?.toLowerCase().includes(this.searchQuery) ||
-          note.description?.toLowerCase().includes(this.searchQuery)
-        )
-      );
+          note.isArchived &&
+          !note.isDeleted &&
+          (
+            note.title?.toLowerCase().includes(this.searchQuery) ||
+            note.description?.toLowerCase().includes(this.searchQuery)
+          )
+        );
         this.archivedNotes = filtered.reverse();
       },
       error: (err) => {

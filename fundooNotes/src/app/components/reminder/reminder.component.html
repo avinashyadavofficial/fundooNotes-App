@@ -1,43 +1,44 @@
-  <div *ngIf="reminderNotes.length > 0; else emptyReminder" [ngClass]="viewMode === 'grid' ? 'note-grid' : 'note-list'">
-    <mat-card
-  *ngFor="let note of reminderNotes"
-  class="note-card"
-  [style.background]="note.color || '#fff'"
-  (mouseenter)="note.showIcons = true"
-  (mouseleave)="note.showIcons = false"
->
-      <h3>{{ note.title }}</h3>
-      <p>{{ note.description }}</p>
-      <div *ngIf="note.reminder?.length" class="reminder-section" >
-        <mat-icon class="reminder-icon" >schedule</mat-icon>
-        {{ formatReminderTime(note.reminder[0]) }}
-        <mat-icon
-    class="reminder-remove-icon"
-    (click)="removeReminder(note)"
-    title="Delete reminder"
+<div *ngIf="reminderNotes.length > 0; else emptyReminder" [ngClass]="viewMode === 'grid' ? 'note-grid' : 'note-list'">
+  <mat-card
+    *ngFor="let note of reminderNotes"
+    class="note-card"
+    [style.background]="note.color || '#fff'"
+    (mouseenter)="note.showIcons = true"
+    (mouseleave)="note.showIcons = false"
   >
-    close
-  </mat-icon>
-      </div>
-      <div [class.hidden]="!note.showIcons"
-      class="note-icons-wrapper">
-        <app-note-icons
-          [note]="note"
-          [showReminder]="true"
-          [showColor]="true"
-          [showTrash]="false"
-          [showMore]="true"
-          [showArchive]="true"
-          [showCollaborator]="true"
-          [showImage]="true"
-        ></app-note-icons>
-      </div>
-    </mat-card>
-  </div>
+    <h3>{{ note.title }}</h3>
+    <p>{{ note.description }}</p>
+
+    <div *ngIf="note.reminder?.length" class="reminder-section">
+      <mat-icon class="reminder-icon">schedule</mat-icon>
+      {{ formatReminderTime(note.reminder[0]) }}
+      <mat-icon
+        class="reminder-remove-icon"
+        (click)="removeReminder(note)"
+        title="Delete reminder"
+      >
+        close
+      </mat-icon>
+    </div>
+
+    <div [class.hidden]="!note.showIcons" class="note-icons-wrapper">
+      <app-note-icons
+        [note]="note"
+        [showReminder]="true"
+        [showColor]="true"
+        [showTrash]="false"
+        [showMore]="true"
+        [showArchive]="true"
+        [showCollaborator]="true"
+        [showImage]="true"
+      ></app-note-icons>
+    </div>
+  </mat-card>
+</div>
+
 <ng-template #emptyReminder>
   <div class="empty-reminder">
-     <mat-icon class="material-symbols-outlined">notifications</mat-icon>
-    <p>Notes with upcoming reminders appear here
-</p>
+    <mat-icon class="material-symbols-outlined">notifications</mat-icon>
+    <p>Notes with upcoming reminders appear here</p>
   </div>
 </ng-template>

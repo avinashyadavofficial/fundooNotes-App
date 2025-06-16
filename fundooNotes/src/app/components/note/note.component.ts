@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CreateNoteComponent } from "./create-note/create-note.component";
-import { DisplayNoteComponent } from "./display-note/display-note.component";
+import { CreateNoteComponent } from './create-note/create-note.component';
+import { DisplayNoteComponent } from './display-note/display-note.component';
 import { ViewService } from 'src/app/services/view/view.service';
 
 @Component({

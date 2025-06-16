@@ -34,6 +34,7 @@
   cursor: pointer;
   border: 1px solid #ccc;
 }
+
 .pin-icon {
   position: absolute;
   top: 8px;
@@ -50,12 +51,60 @@
 .pin-icon:hover {
   background-color: rgba(60, 64, 67, 0.1);
 }
+
 .pin-icon.pinned {
   font-variation-settings: 'FILL' 1;
 }
+
 .reminder-menu-panel .time-label {
   margin-left: auto;
   color: #5f6368;
   font-size: 12px;
 }
 
+@media (max-width: 1023px) {
+  .icons-container {
+    gap: 10px;
+  }
+
+  .icon-button {
+    width: 34px;
+    height: 34px;
+  }
+
+  .icon-button mat-icon {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 767px) {
+  .icons-container {
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .icon-button {
+    width: 32px;
+    height: 32px;
+  }
+
+  .icon-button mat-icon {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 599px) {
+  .icons-container {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .icon-button {
+    width: 30px;
+    height: 30px;
+  }
+
+  .icon-button mat-icon {
+    font-size: 16px;
+  }
+}

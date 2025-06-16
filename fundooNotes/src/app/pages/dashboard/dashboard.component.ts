@@ -7,6 +7,7 @@ import { CreateNoteComponent } from '../../components/note/create-note/create-no
 import { DisplayNoteComponent } from '../../components/note/display-note/display-note.component';
 import { RouterOutlet } from '@angular/router';
 import { SearchService } from 'src/app/services/search.service';
+
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -24,6 +25,7 @@ import { SearchService } from 'src/app/services/search.service';
 })
 export class DashboardComponent {
   constructor(private searchService: SearchService) {}
+
   isCollapsed = true;
   isHovering = false;
   viewMode: 'grid' | 'list' = 'grid';
@@ -48,8 +50,8 @@ export class DashboardComponent {
   onViewModeChange(mode: 'grid' | 'list'): void {
     this.viewMode = mode;
   }
-  
-onSearchInput(query: string): void {
-  this.searchService.setSearchQuery(query);
-}
+
+  onSearchInput(query: string): void {
+    this.searchService.setSearchQuery(query);
+  }
 }

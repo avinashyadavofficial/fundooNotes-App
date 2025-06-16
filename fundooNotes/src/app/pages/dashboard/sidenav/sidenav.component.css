@@ -44,3 +44,44 @@
 :host-context(.collapsed-nav) .nav-link span {
   display: none;
 }
+
+@media (max-width: 1279px) {
+  .nav-item {
+    padding: 10px 16px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .nav-icon {
+    font-size: 20px;
+  }
+
+  .nav-item {
+    padding: 8px 14px;
+  }
+}
+
+@media (max-width: 767px) {
+  .sidenav-container {
+    padding-top: 4px;
+  }
+
+  .nav-item {
+    padding: 8px 12px;
+  }
+}
+
+@media (max-width: 599px) {
+  .nav-item {
+    padding: 8px 10px;
+    font-size: 0.85rem;
+  }
+
+  .nav-icon {
+    font-size: 20px;
+  }
+
+  .collapsed .nav-item {
+    padding: 8px 0;
+  }
+}

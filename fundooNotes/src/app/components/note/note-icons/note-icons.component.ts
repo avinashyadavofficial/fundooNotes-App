@@ -11,6 +11,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-note-icons',
   standalone: true,
@@ -30,7 +31,7 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./note-icons.component.css']
 })
 export class NoteIconsComponent {
-  @Input() note: any = {}; 
+  @Input() note: any = {};
   @Input() showReminder = true;
   @Input() showCollaborator = true;
   @Input() showColor = true;
@@ -41,12 +42,13 @@ export class NoteIconsComponent {
   @Input() showUndo = true;
   @Input() showRedo = true;
   @Input() showUnarchive = false;
-  @Input() showFormatColorText=false;
+  @Input() showFormatColorText = false;
+
   @Output() reminderSet = new EventEmitter<string>();
   @Output() colorChanged = new EventEmitter<string>();
+
   customDate: Date | null = null;
   customTime: string = '';
-
   colors: string[] = [
     '#ffffff', '#f28b82', '#fbbc04', '#fff475',
     '#ccff90', '#a7ffeb', '#cbf0f8', '#aecbfa',
@@ -90,15 +92,15 @@ export class NoteIconsComponent {
 
     this.noteService.archiveNote(payload).subscribe({
       next: () => {
-        console.log('Archived note, triggering refresh');
-        this.refreshService.triggerRefresh(); 
+        this.refreshService.triggerRefresh();
       },
       error: (err) => {
         console.error('Archive failed:', err);
       }
     });
   }
-   onUnArchiveClick(): void {
+
+  onUnArchiveClick(): void {
     const payload = {
       noteIdList: [this.note?.id],
       isArchived: false
@@ -106,49 +108,49 @@ export class NoteIconsComponent {
 
     this.noteService.archiveNote(payload).subscribe({
       next: () => {
-        console.log('Unarchived note, triggering refresh');
-        this.refreshService.triggerRefresh(); 
+        this.refreshService.triggerRefresh();
       },
       error: (err) => {
-        console.error('Unarchived failed:', err);
+        console.error('Unarchive failed:', err);
       }
     });
   }
 
   togglePin(): void {
-  if (!this.note?.id) return;
+    if (!this.note?.id) return;
 
-  const payload = {
-    noteIdList: [this.note.id],
-    isPined: !this.note.isPined
-  };
+    const payload = {
+      noteIdList: [this.note.id],
+      isPined: !this.note.isPined
+    };
 
-  this.noteService.pinNote(payload).subscribe({
-    next: () => {
-      this.refreshService.triggerRefresh();
-    },
-    error: (err) => {
-      console.error('Pin/Unpin failed:', err);
-    }
-  });
-}
+    this.noteService.pinNote(payload).subscribe({
+      next: () => {
+        this.refreshService.triggerRefresh();
+      },
+      error: (err) => {
+        console.error('Pin/Unpin failed:', err);
+      }
+    });
+  }
 
   onDeleteClick(): void {
-  const payload = {
-    noteIdList: [this.note?.id],
-    isDeleted: true
-  };
+    const payload = {
+      noteIdList: [this.note?.id],
+      isDeleted: true
+    };
 
-  this.noteService.trashNote(payload).subscribe({
-    next: () => {
-      setTimeout(() => this.refreshService.triggerRefresh(), 200); 
-    },
-    error: (err) => {
-      console.error('Move to Trash failed:', err);
-    }
-  });
-}
-setReminder(option: 'laterToday' | 'tomorrow' | 'nextWeek') {
+    this.noteService.trashNote(payload).subscribe({
+      next: () => {
+        setTimeout(() => this.refreshService.triggerRefresh(), 200);
+      },
+      error: (err) => {
+        console.error('Move to Trash failed:', err);
+      }
+    });
+  }
+
+  setReminder(option: 'laterToday' | 'tomorrow' | 'nextWeek') {
     const now = new Date();
     let reminder: Date;
 
@@ -180,22 +182,18 @@ setReminder(option: 'laterToday' | 'tomorrow' | 'nextWeek') {
   }
 
   saveReminder(reminderArray: string[]) {
-  const payload = {
-    noteIdList: [this.note.id],
-    reminder: reminderArray
-  };
-  
+    const payload = {
+      noteIdList: [this.note.id],
+      reminder: reminderArray
+    };
 
-  this.noteService.addUpdateReminderNotes(payload.noteIdList, payload.reminder).subscribe({
-    next: () => {
-      console.log('Reminder saved successfully');
-    },
-    error: err => {
-      console.error('Reminder failed', err);
-    }
-  });
-}
-  
-
-
+    this.noteService.addUpdateReminderNotes(payload.noteIdList, payload.reminder).subscribe({
+      next: () => {
+        console.log('Reminder saved successfully');
+      },
+      error: err => {
+        console.error('Reminder failed', err);
+      }
+    });
+  }
 }

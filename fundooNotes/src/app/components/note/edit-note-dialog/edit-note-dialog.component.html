@@ -1,48 +1,45 @@
 <form [formGroup]="noteForm">
-<mat-card class="dialog-card" [style.background]="note.color || '#fff'" >
-
-  <div class="note-header">
-    <input
-      type="text"
-      class="note-title"
-      placeholder="Title"
-      formControlName="title"
-    />
-  </div>
-
- <textarea
-  #autosize="cdkTextareaAutosize"
-  cdkTextareaAutosize
-  cdkAutosizeMinRows="3"
-  cdkAutosizeMaxRows="20"
-  formControlName="description"
-  class="note-description"
-  placeholder="Take a note..."
-></textarea>
-
-  <div class="icon-footer">
-    <app-note-icons
-      [note]="note"
-      [showReminder]="true"
-      [showCollaborator]="true"
-      [showColor]="true"
-      [showImage]="true"
-      [showArchive]="true"
-      [showTrash]="true"
-      [showMore]="true"
-      [showUndo]="true"
-      [showRedo]="true"
-      [showFormatColorText]="true"
-    ></app-note-icons>
-
-
-    <div class="footer">
-      <div class="footer-right">
-        Edited at {{ currentDate | date: 'dd MMM' }}
-      </div>
-      <button mat-button (click)="onSave()">Close</button>
+  <mat-card class="dialog-card" [style.background]="note.color || '#fff'">
+    <div class="note-header">
+      <input
+        type="text"
+        class="note-title"
+        placeholder="Title"
+        formControlName="title"
+      />
     </div>
-  </div>
 
-</mat-card>
+    <textarea
+      #autosize="cdkTextareaAutosize"
+      cdkTextareaAutosize
+      cdkAutosizeMinRows="3"
+      cdkAutosizeMaxRows="20"
+      formControlName="description"
+      class="note-description"
+      placeholder="Take a note..."
+    ></textarea>
+
+    <div class="icon-footer">
+      <app-note-icons
+        [note]="note"
+        [showReminder]="true"
+        [showCollaborator]="true"
+        [showColor]="true"
+        [showImage]="true"
+        [showArchive]="true"
+        [showTrash]="true"
+        [showMore]="true"
+        [showUndo]="true"
+        [showRedo]="true"
+        [showFormatColorText]="true"
+      ></app-note-icons>
+
+      <div class="footer">
+        <div class="footer-right">
+          Edited at {{ currentDate | date: 'dd MMM' }}
+        </div>
+        <button mat-button (click)="onSave()">Close</button>
+      </div>
+    </div>
+  </mat-card>
 </form>

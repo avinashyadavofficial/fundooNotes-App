@@ -30,36 +30,45 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private router:Router
+    private router: Router
   ) {
     this.loginForm = this.fb.group({
-      emailOrPhone: ['', [
-        Validators.required,
-        Validators.pattern(/^(?:[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}|(?:\+?\d{1,3}[- ]?)?\d{10})$/)
-      ]],
-      password: ['', [
-        Validators.required,
-        Validators.minLength(8),
-        Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)
-      ]]
+      emailOrPhone: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(
+            /^(?:[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}|(?:\+?\d{1,3}[- ]?)?\d{10})$/
+          )
+        ]
+      ],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.pattern(
+            /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+          )
+        ]
+      ]
     });
   }
 
   onSubmit() {
     if (this.loginForm.valid) {
       const data = {
-        email: this.loginForm.value.emailOrPhone, 
+        email: this.loginForm.value.emailOrPhone,
         password: this.loginForm.value.password
       };
       this.userService.login(data).subscribe({
         next: (result: any) => {
           console.log('Login successful:', result);
           localStorage.setItem('authToken', result.id);
-          this.router.navigate(['/dashboard'])
+          this.router.navigate(['/dashboard']);
         },
         error: (err) => {
           console.error('Login error:', err);
-
         }
       });
     }

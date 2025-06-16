@@ -69,16 +69,17 @@
 .submit-btn {
   width: 20%;
 }
+
 .success-snackbar {
   background-color: #4caf50;
   color: white;
 }
+
 .error-snackbar {
-  background-color: #f44336; 
+  background-color: #f44336;
   color: white;
 }
 
-/* Tablet (601px to 1024px) */
 @media screen and (max-width: 1024px) {
   .register-card {
     width: 90%;
@@ -98,7 +99,6 @@
   }
 }
 
-/* Phone (up to 600px) */
 @media screen and (max-width: 600px) {
   .register-card {
     width: 100%;

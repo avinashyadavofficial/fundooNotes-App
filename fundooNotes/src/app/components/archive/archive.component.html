@@ -1,34 +1,31 @@
-
 <div *ngIf="archivedNotes.length > 0; else emptyArchive" [ngClass]="viewMode === 'grid' ? 'note-grid' : 'note-list'">
   <mat-card
     *ngFor="let note of archivedNotes"
     class="note-card"
     [style.background]="note.color || '#fff'"
-      (mouseenter)="note.showIcons = true"
-      (mouseleave)="note.showIcons = false"
+    (mouseenter)="note.showIcons = true"
+    (mouseleave)="note.showIcons = false"
   >
     <h3>{{ note.title }}</h3>
     <p>{{ note.description }}</p>
 
     <div [class.hidden]="!note.showIcons" class="note-icons-wrapper">
-    <app-note-icons
-      [note]="note"
-      [showReminder]="true"
-      [showCollaborator]="true"
-      [showColor]="true"
-      [showImage]="true"
-      [showArchive]="false"
-      [showUnarchive]="true"
-      [showTrash]="false"
-      [showMore]="true"
-      [showUndo]="false"
-      [showRedo]="false"
-      
-    ></app-note-icons>
-  </div>
+      <app-note-icons
+        [note]="note"
+        [showReminder]="true"
+        [showCollaborator]="true"
+        [showColor]="true"
+        [showImage]="true"
+        [showArchive]="false"
+        [showUnarchive]="true"
+        [showTrash]="false"
+        [showMore]="true"
+        [showUndo]="false"
+        [showRedo]="false"
+      ></app-note-icons>
+    </div>
   </mat-card>
 </div>
-
 
 <ng-template #emptyArchive>
   <div class="empty-archive">

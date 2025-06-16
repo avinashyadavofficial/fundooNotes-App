@@ -11,23 +11,18 @@
     (mouseenter)="note.showIcons = true"
     (mouseleave)="note.showIcons = false"
   >
-    
-      <h3>{{ note.title }}</h3>
-      <p>{{ note.description }}</p>
+    <h3>{{ note.title }}</h3>
+    <p>{{ note.description }}</p>
 
-      <div class="note-icons-wrapper" [class.hidden]="!note.showIcons">
-
-        <div class="icon-button" (click)="restoreNote(note.id)">
-          <mat-icon title="Restore">restore_from_trash</mat-icon>
-        </div>
-
-        <div class="icon-button" (click)="openDeleteDialog(note.id)">
-          <mat-icon>delete_forever</mat-icon>
-        </div>
-
-
+    <div class="note-icons-wrapper" [class.hidden]="!note.showIcons">
+      <div class="icon-button" (click)="restoreNote(note.id)">
+        <mat-icon title="Restore">restore_from_trash</mat-icon>
       </div>
-    
+
+      <div class="icon-button" (click)="openDeleteDialog(note.id)">
+        <mat-icon>delete_forever</mat-icon>
+      </div>
+    </div>
   </mat-card>
 </div>
 

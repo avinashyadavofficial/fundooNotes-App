@@ -1,5 +1,4 @@
 <div class="display-div">
-
   <div *ngIf="pinnedNotes.length > 0">
     <h5 class="section-heading">PINNED</h5>
     <div [ngClass]="viewMode === 'grid' ? 'note-grid' : 'note-list'">
@@ -10,53 +9,11 @@
         (mouseenter)="note.showIcons = true"
         (mouseleave)="note.showIcons = false"
       >
-  
         <div class="note-body" (click)="openEditDialog(note)">
           <h3>{{ note.title }}</h3>
           <p>{{ note.description }}</p>
         </div>
 
-      
-        <div
-          [class.hidden]="!note.showIcons"
-          class="note-icons-wrapper"
-          (click)="$event.stopPropagation()"
-        >
-          <app-note-icons
-            [note]="note" 
-            [showReminder]="true"
-            [showCollaborator]="true"
-            [showColor]="true"
-            [showImage]="true"
-            [showArchive]="true"
-            [showTrash]="false"
-            [showMore]="true"
-            [showUndo]="false"
-            [showRedo]="false"
-          ></app-note-icons>
-        </div>
-      </mat-card>
-    </div>
-  </div>
-
-
-  <div *ngIf="otherNotes.length > 0">
-    <h5 class="section-heading" *ngIf="pinnedNotes.length > 0">OTHERS</h5>
-    <div [ngClass]="viewMode === 'grid' ? 'note-grid' : 'note-list'">
-      <mat-card
-        *ngFor="let note of otherNotes"
-        class="note-card"
-        [style.background]="note.color || '#fff'"
-        (mouseenter)="note.showIcons = true"
-        (mouseleave)="note.showIcons = false"
-      >
-       
-        <div class="note-body" (click)="openEditDialog(note)">
-          <h3>{{ note.title }}</h3>
-          <pre>{{ note.description }}</pre>
-        </div>
-
-        
         <div
           [class.hidden]="!note.showIcons"
           class="note-icons-wrapper"
@@ -79,4 +36,40 @@
     </div>
   </div>
 
+  <div *ngIf="otherNotes.length > 0">
+    <h5 class="section-heading" *ngIf="pinnedNotes.length > 0">OTHERS</h5>
+    <div [ngClass]="viewMode === 'grid' ? 'note-grid' : 'note-list'">
+      <mat-card
+        *ngFor="let note of otherNotes"
+        class="note-card"
+        [style.background]="note.color || '#fff'"
+        (mouseenter)="note.showIcons = true"
+        (mouseleave)="note.showIcons = false"
+      >
+        <div class="note-body" (click)="openEditDialog(note)">
+          <h3>{{ note.title }}</h3>
+          <pre>{{ note.description }}</pre>
+        </div>
+
+        <div
+          [class.hidden]="!note.showIcons"
+          class="note-icons-wrapper"
+          (click)="$event.stopPropagation()"
+        >
+          <app-note-icons
+            [note]="note"
+            [showReminder]="true"
+            [showCollaborator]="true"
+            [showColor]="true"
+            [showImage]="true"
+            [showArchive]="true"
+            [showTrash]="false"
+            [showMore]="true"
+            [showUndo]="false"
+            [showRedo]="false"
+          ></app-note-icons>
+        </div>
+      </mat-card>
+    </div>
+  </div>
 </div>

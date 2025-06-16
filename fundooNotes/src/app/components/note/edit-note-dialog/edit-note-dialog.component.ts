@@ -13,7 +13,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { CdkTextareaAutosize, TextFieldModule } from '@angular/cdk/text-field';
-
 import { NoteService } from 'src/app/services/note/note.service';
 import { NoteIconsComponent } from '../note-icons/note-icons.component';
 
@@ -90,7 +89,7 @@ export class EditNoteDialogComponent implements AfterViewInit, OnDestroy {
         title: this.noteForm.value.title,
         description: this.noteForm.value.description
       };
-      this.noteService.updateNote(updatedNote).subscribe(); // auto-save on close
+      this.noteService.updateNote(updatedNote).subscribe();
     }
   }
 

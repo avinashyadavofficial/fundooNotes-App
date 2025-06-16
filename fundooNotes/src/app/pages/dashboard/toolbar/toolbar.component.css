@@ -71,7 +71,6 @@
 }
 
 .icon-button:hover {
-  
   background-color: rgba(60, 64, 67, 0.1);
 }
 
@@ -94,20 +93,67 @@
 mat-icon,
 .material-symbols-outlined,
 .user-icon {
-  font-size: 24px !important;  
+  font-size: 24px !important;
   color: #5f6368;
 }
 
-/* .user-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-} */
- @keyframes spin {
-  0%   { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .refresh-animating {
   animation: spin 0.5s linear;
+}
+
+@media (max-width: 1279px) {
+  .search-bar {
+    margin: 0 12px;
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .logo {
+    font-size: 1rem;
+  }
+  .search-bar {
+    max-width: 420px;
+  }
+  .actions {
+    gap: 8px;
+  }
+}
+
+@media (max-width: 767px) {
+  .search-bar {
+    margin: 0 8px;
+    max-width: 320px;
+  }
+  .logo {
+    font-size: 0.95rem;
+  }
+  .actions {
+    gap: 6px;
+  }
+}
+
+@media (max-width: 599px) {
+  .toolbar {
+    padding: 0 10px;
+    height: 56px;
+  }
+  .logo {
+    font-size: 0.85rem;
+  }
+  .search-bar {
+    display: none;
+  }
+  .actions {
+    gap: 4px;
+  }
 }
