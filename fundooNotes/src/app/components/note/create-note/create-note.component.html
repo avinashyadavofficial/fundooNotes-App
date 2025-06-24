@@ -1,0 +1,62 @@
+<mat-card
+  #noteCard
+  class="note-card"
+  (click)="!isExpanded && onFocus()"
+  [style.background]="selectedColor"
+>
+  <form [formGroup]="noteForm" *ngIf="isExpanded">
+    <div class="note-header">
+      <input
+        matInput
+        formControlName="title"
+        placeholder="Title"
+        class="note-title"
+      />
+    </div>
+
+    <textarea
+      matInput
+      formControlName="description"
+      placeholder="Take a note..."
+      class="note-description"
+      cdkTextareaAutosize
+      cdkAutosizeMinRows="1"
+      cdkAutosizeMaxRows="20"
+    ></textarea>
+
+    <div class="icon-footer">
+      <app-note-icons
+        (reminderSet)="onReminderSet($event)"
+        [note]="{ id: '', color: selectedColor }"
+        (colorChanged)="onColorChanged($event)"
+        [showReminder]="true"
+        [showCollaborator]="true"
+        [showColor]="true"
+        [showImage]="true"
+        [showArchive]="true"
+        [showTrash]="false"
+        [showMore]="true"
+        [showUndo]="true"
+        [showRedo]="true"
+        [showFormatColorText]="true"
+      ></app-note-icons>
+
+      <button mat-button type="button" (click)="onClose()">Close</button>
+    </div>
+  </form>
+
+  <div *ngIf="!isExpanded" class="note-collapsed">
+    <span>Take a note...</span>
+    <div class="collapsed-icons">
+      <div class="icon-button">
+        <mat-icon class="material-symbols-outlined seltoggle">check_box</mat-icon>
+      </div>
+      <div class="icon-button">
+        <mat-icon class="material-symbols-outlined seltoggle">brush</mat-icon>
+      </div>
+      <div class="icon-button">
+        <mat-icon class="material-symbols-outlined seltoggle">image</mat-icon>
+      </div>
+    </div>
+  </div>
+</mat-card>

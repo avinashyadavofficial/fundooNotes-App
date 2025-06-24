@@ -10,7 +10,6 @@ import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { Router, RouterModule } from '@angular/router';
 import { UserService } from 'src/app/services/user/user.service';
 
-
 @Component({
   selector: 'app-registration',
   standalone: true,
@@ -31,7 +30,6 @@ import { UserService } from 'src/app/services/user/user.service';
 export class RegistrationComponent {
   registerForm: FormGroup;
   hidePassword: boolean = true;
- 
 
   constructor(
     private fb: FormBuilder,
@@ -80,29 +78,30 @@ export class RegistrationComponent {
         lastName: this.registerForm.value.lastName,
         email: this.registerForm.value.username,
         password: this.registerForm.value.password,
-        service:"advance"
+        service: 'advance'
       };
+
       this.userService.register(data).subscribe({
-  next: (result: any) => {
-    console.log(result);
-    localStorage.setItem('authToken', result.id);
-    this.snackBar.open('Registration successful! Please log in.', 'Close', {
-      duration: 3000,
-      horizontalPosition: 'center',
-      verticalPosition: 'top',
-    });
-    this.router.navigate(['/login']);
-  },
-  error: (err) => {
-    console.error('Registration error:', err);
-    this.snackBar.open('Registration failed. Please try again.', 'Close', {
-      duration: 3000,
-      horizontalPosition: 'center',
-      verticalPosition: 'top',
-      panelClass: ['error-snackbar'] 
-    });
-  }
-});
+        next: (result: any) => {
+          console.log(result);
+          localStorage.setItem('authToken', result.id);
+          this.snackBar.open('Registration successful! Please log in.', 'Close', {
+            duration: 3000,
+            horizontalPosition: 'center',
+            verticalPosition: 'top'
+          });
+          this.router.navigate(['']);
+        },
+        error: (err) => {
+          console.error('Registration error:', err);
+          this.snackBar.open('Registration failed. Please try again.', 'Close', {
+            duration: 3000,
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+            panelClass: ['error-snackbar']
+          });
+        }
+      });
     }
   }
 

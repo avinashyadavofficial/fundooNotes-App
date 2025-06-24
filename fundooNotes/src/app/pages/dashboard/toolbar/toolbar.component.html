@@ -1,0 +1,55 @@
+<mat-toolbar class="topbar" color="default">
+  <button mat-icon-button class="icon-button" (click)="onMenuClick()">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <img
+    src="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png"
+    class="logo"
+    alt="Keep Logo"
+  />
+  <span class="title">{{ title }}</span>
+
+  <div class="search-container">
+    <div class="search-icon-wrapper icon-button">
+      <mat-icon>search</mat-icon>
+    </div>
+    <input
+      matInput
+      [(ngModel)]="searchText"
+      (ngModelChange)="onSearchChange()"
+      placeholder="Search"
+      class="search-input"
+    />
+  </div>
+
+  <div class="icon-container">
+    <div class="icon-button" (click)="triggerManualRefresh()" title="Refresh">
+      <mat-icon
+        class="material-symbols-outlined"
+        [ngClass]="{ 'refresh-animating': refreshing }"
+      >
+        refresh
+      </mat-icon>
+    </div>
+
+    <div class="icon-button" (click)="toggleViewMode()" title="Toggle view">
+      <mat-icon class="material-symbols-outlined">
+        {{ viewMode === 'grid' ? 'view_agenda' : 'grid_view' }}
+      </mat-icon>
+    </div>
+
+    <div class="icon-button">
+      <mat-icon class="material-symbols-outlined">settings</mat-icon>
+    </div>
+  </div>
+
+  <div class="google-container">
+    <div class="icon-button">
+      <mat-icon class="material-symbols-outlined">apps</mat-icon>
+    </div>
+    <div class="icon-button">
+      <mat-icon class="user-icon">account_circle</mat-icon>
+    </div>
+  </div>
+</mat-toolbar>

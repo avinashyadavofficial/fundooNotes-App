@@ -1,0 +1,110 @@
+.icon-toolbar {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+  margin-bottom: 1px;
+}
+
+.material-symbols-outlined {
+  font-family: "Material Symbols Outlined";
+  font-size: 20px;
+  color: #5f6368;
+  cursor: pointer;
+}
+
+.color-picker {
+  position: absolute;
+  top: 30px;
+  background: white;
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  z-index: 10;
+}
+
+.color-circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 1px solid #ccc;
+}
+
+.pin-icon {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 20px;
+  color: #5f6368;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+  z-index: 2;
+}
+
+.pin-icon:hover {
+  background-color: rgba(60, 64, 67, 0.1);
+}
+
+.pin-icon.pinned {
+  font-variation-settings: 'FILL' 1;
+}
+
+.reminder-menu-panel .time-label {
+  margin-left: auto;
+  color: #5f6368;
+  font-size: 12px;
+}
+
+@media (max-width: 1023px) {
+  .icons-container {
+    gap: 10px;
+  }
+
+  .icon-button {
+    width: 34px;
+    height: 34px;
+  }
+
+  .icon-button mat-icon {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 767px) {
+  .icons-container {
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .icon-button {
+    width: 32px;
+    height: 32px;
+  }
+
+  .icon-button mat-icon {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 599px) {
+  .icons-container {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .icon-button {
+    width: 30px;
+    height: 30px;
+  }
+
+  .icon-button mat-icon {
+    font-size: 16px;
+  }
+}

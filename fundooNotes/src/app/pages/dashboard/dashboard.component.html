@@ -1,0 +1,24 @@
+<app-toolbar 
+  (menuClicked)="toggleSidenav()" 
+  (viewModeChange)="onViewModeChange($event)" 
+  (search)="onSearchInput($event)">
+</app-toolbar>
+
+<mat-sidenav-container class="main-layout" autosize>
+  <mat-sidenav
+    mode="side"
+    opened="true"
+    [class.collapsed-nav]="sidenavCollapsed"
+    class="custom-nav"
+    (mouseenter)="onMouseEnter()"
+    (mouseleave)="onMouseLeave()"
+  >
+    <app-sidenav [collapsed]="sidenavCollapsed"></app-sidenav>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div class="content-wrapper">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

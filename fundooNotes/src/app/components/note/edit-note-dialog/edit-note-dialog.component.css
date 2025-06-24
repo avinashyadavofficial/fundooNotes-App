@@ -1,0 +1,97 @@
+.dialog-card {
+  width: 600px;
+  max-width: 90vw;
+  padding: 16px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  background-color: white;
+}
+
+.note-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.note-title,
+.note-description {
+  width: 100%;
+  font-size: 16px;
+  font-weight: 100;
+  border: none;
+  outline: none;
+  background: transparent;
+  margin-bottom: 8px;
+}
+
+.note-description {
+  font-size: 14px;
+  resize: none;
+  overflow: hidden;
+  transition: height 0.2s ease;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 10px;
+}
+
+.footer-right {
+  font-size: 12px;
+  color: #5f6368;
+}
+
+button {
+  font-weight: 500;
+}
+
+.note-body {
+  cursor: pointer;
+  padding: 4px;
+}
+
+.note-body:hover {
+  background: #f1f3f4;
+  border-radius: 6px;
+}
+
+.icon-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 10px;
+  padding-top: 10px;
+  padding-bottom: 2px;
+}
+
+@media (max-width: 1024px) {
+  .dialog-card {
+    width: 90vw;
+    padding: 12px;
+  }
+
+  .note-title {
+    font-size: 15px;
+  }
+
+  .note-description {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 767px) {
+  .icon-footer {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+  }
+}

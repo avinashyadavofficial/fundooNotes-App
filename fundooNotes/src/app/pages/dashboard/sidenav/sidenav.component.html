@@ -1,0 +1,52 @@
+<mat-nav-list class="nav-list">
+  <a
+    mat-list-item
+    class="nav-link"
+    [routerLink]="['/dashboard/note']"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    <mat-icon class="material-symbols-outlined">lightbulb</mat-icon>
+    <span *ngIf="!collapsed">Notes</span>
+  </a>
+
+  <a
+    mat-list-item
+    class="nav-link"
+    [routerLink]="['/dashboard/reminders']"
+    routerLinkActive="active"
+  >
+    <mat-icon class="material-symbols-outlined">notifications</mat-icon>
+    <span *ngIf="!collapsed">Reminders</span>
+  </a>
+
+  <a
+    mat-list-item
+    class="nav-link"
+    [routerLink]="['/dashboard/editlabels']"
+    routerLinkActive="active"
+  >
+    <mat-icon class="material-symbols-outlined">edit</mat-icon>
+    <span *ngIf="!collapsed">Edit labels</span>
+  </a>
+
+  <a
+    mat-list-item
+    class="nav-link"
+    [routerLink]="['/dashboard/archive']"
+    routerLinkActive="active"
+  >
+    <mat-icon class="material-symbols-outlined">archive</mat-icon>
+    <span *ngIf="!collapsed">Archive</span>
+  </a>
+
+  <a
+    mat-list-item
+    class="nav-link"
+    [routerLink]="['/dashboard/trash']"
+    routerLinkActive="active"
+  >
+    <mat-icon class="material-symbols-outlined">delete</mat-icon>
+    <span *ngIf="!collapsed">Trash</span>
+  </a>
+</mat-nav-list>

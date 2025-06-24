@@ -1,0 +1,86 @@
+.dialog-box {
+  width: 100%;
+  max-width: 600px;
+  min-width: 420px;
+  padding: 24px;
+  box-sizing: border-box;
+  overflow: hidden;
+  height: 113px;
+}
+
+.message {
+  margin: 0;
+  font-size: 15px;
+  color: #202124;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+  gap: 50px !important;
+}
+
+.cancel {
+  font-weight: 500;
+  color: #202124 !important;
+  background: transparent !important;
+}
+
+.delete {
+  font-weight: 500;
+  color: #1a73e8 !important;
+  background: transparent !important;
+}
+
+::ng-deep .custom-dialog-container .mat-dialog-container {
+  border-radius: 12px;
+  padding: 24px;
+  background-color: white;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 1279px) {
+  .note-grid {
+    padding-left: 6%;
+  }
+
+  .note-list {
+    padding-left: 20%;
+  }
+}
+
+@media (max-width: 1023px) {
+  .note-grid {
+    justify-content: center;
+    padding-left: 0;
+  }
+
+  .note-list {
+    width: 95%;
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .note-card {
+    width: 95%;
+  }
+
+  .note-grid {
+    justify-content: center;
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 599px) {
+  .note-card {
+    padding: 10px;
+  }
+
+  .note-grid {
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+  }
+}

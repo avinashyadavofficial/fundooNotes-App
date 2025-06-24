@@ -5,22 +5,20 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class HttpService {
-  baseUrl = 'https://fundoonotes.incubation.bridgelabz.com/api/';
+  private baseUrl = 'https://fundoonotes.incubation.bridgelabz.com/api/';
 
   constructor(private http: HttpClient) {}
 
-  getHeader() {
-    const headers = new HttpHeaders({
-      Authorization: localStorage.getItem('authToken') || ''
-    });
-    return headers;
+  getHeader(): HttpHeaders {
+    const token = localStorage.getItem('authToken') || '';
+    return new HttpHeaders({ Authorization: token });
   }
 
-  getApi(endpoint: string, headers: HttpHeaders = new HttpHeaders()) {
+  getApi(endpoint: string, headers: HttpHeaders = this.getHeader()) {
     return this.http.get(this.baseUrl + endpoint, { headers });
   }
 
-  postApi(endpoint: string, payload: any, headers: HttpHeaders = new HttpHeaders()) {
+  postApi(endpoint: string, payload: any, headers: HttpHeaders = this.getHeader()) {
     return this.http.post(this.baseUrl + endpoint, payload, { headers });
   }
 }
